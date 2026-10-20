@@ -17,6 +17,22 @@
 * 나머지 칸은 가로 4:3 비율로 잘려 보입니다.
 * GitHub Pages는 대소문자를 구분합니다. 파일 이름은 위와 똑같이 소문자로 써 주세요.
 
+[프로젝트 상세 페이지 대표 사진 (제목 아래 큰 배너)]
+
+가로 5:2 비율로 잘려 보입니다. (예: 1500×600)
+
+  banner-geumjjok     금쪽사랑휴가 신설
+  banner-shiftee      근태관리 프로그램 운영
+  banner-welfare      복지포인트 도입
+  banner-travel       출장여비 사규 개정
+  banner-recruit      채용설명회 운영
+  banner-allowance    특별업무 추가수당 신설
+  banner-wage         통상임금 개편
+  banner-reemploy     정년 후 재고용 도입
+  banner-tuition      해외대학 학자금 기준 변경
+  banner-peoplexity   AI 학습조직 ‘피플렉시티’
+  banner-routine      HRM 일상업무 (상시)
+
 [사진을 아직 안 넣은 칸 숨기기]
 
 index.html을 메모장으로 열고, 아래 줄의 true를 false로 바꾸면

@@ -95,6 +95,8 @@ section.panel.on{display:block}
 .meta{display:flex;flex-wrap:wrap;align-items:center;margin-top:12px;font-size:13px;color:var(--ink-2)}
 .meta span + span::before{content:"";display:inline-block;width:1px;height:10px;background:var(--line);margin:0 9px;vertical-align:-1px}
 .meta .live{color:var(--ink);font-weight:700}
+.row .rel{margin-top:10px;font-size:13px;line-height:1.6;color:var(--ink-3)}
+.row .rel b{font-weight:600;color:var(--ink-2);margin-right:8px}
 .row .acts{display:flex;gap:18px;flex:none}
 .row .acts button{width:28px;height:28px;display:grid;place-items:center;border-radius:6px}
 .row .acts button:hover{background:var(--soft)}
@@ -102,48 +104,65 @@ section.panel.on{display:block}
 .ftoggle{display:none}
 
 /* ---------- 상세(공고 상세형) ---------- */
-.detail{display:grid;grid-template-columns:1fr 330px;gap:80px;align-items:start}
-.back{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--ink-2);margin-bottom:28px}
-.back:hover{color:var(--ink)}
-.detail h2{font-size:clamp(28px,3vw,38px);font-weight:700;line-height:1.3;letter-spacing:-.8px}
-.detail .lede{font-size:18px;color:var(--ink-2);margin-top:12px}
-.detail .meta{margin-top:16px;font-size:14px}
-.dsec{margin-top:56px}
-.dsec h4{font-size:20px;font-weight:700;letter-spacing:-.3px;margin-bottom:14px}
-.dsec p{color:var(--ink-2);font-size:16px;line-height:1.8}
+.detail{--d-ink:#111213;--d-ink-2:#36363d;--d-body:#62626a;--d-mute:#797981;--d-meta:#919197;--d-sep:#c3c3c5;--d-line:#e6e6e8;--d-soft:#f8f8f8;
+  display:grid;grid-template-columns:282px minmax(0,1fr);gap:112px;align-items:start;letter-spacing:normal;color:var(--d-ink)}
+.detail .back{display:inline-flex;align-items:center;gap:8px;font-size:18px;font-weight:700;line-height:27px;color:var(--d-ink)}
+.back-m{display:none!important}
+.d-count{margin-top:120px;height:40px;font-size:16px;font-weight:700;line-height:24px}
+.d-cards{display:flex;flex-direction:column;gap:12px}
+.d-card{display:block;border:1px solid var(--d-line);border-radius:14px;padding:16px 20px;background:#fff;transition:border-color .15s}
+.d-card:hover{border-color:var(--d-sep)}
+.d-card[aria-current="page"]{border-color:var(--d-body)}
+.d-card .org{display:block;font-size:14px;font-weight:700;line-height:21px;color:var(--d-ink-2)}
+.d-card h4{margin-top:8px;font-size:16px;font-weight:700;line-height:24px;color:var(--d-ink-2)}
+.d-card .m{margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;font-size:14px;line-height:21px;color:var(--d-mute)}
+.d-card .m span + span::before,.d-meta span + span::before{content:"";display:inline-block;width:1px;height:10px;background:var(--d-sep);margin:0 8px;vertical-align:-1px}
+.d-head{display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.detail h2{font-size:26px;font-weight:700;line-height:1.4;letter-spacing:-.32px;color:var(--d-ink)}
+.d-meta{display:flex;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:16px;line-height:24px;color:var(--d-meta)}
+.d-acts{display:flex;align-items:center;gap:16px;flex:none}
+.d-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:4px}
+.d-icon:hover{background:var(--d-soft)}
+.d-apply{display:inline-flex;align-items:center;height:48px;padding:0 32px;border-radius:4px;background:var(--d-ink-2);color:#fff;font-size:16px;white-space:nowrap}
+.d-apply:hover{background:var(--d-ink)}
+.d-banner{margin-top:80px}
+.d-banner .ph-frame{aspect-ratio:5/2;border-radius:14px}
+.d-banner .ph-empty{border-radius:14px}
+.d-banner figcaption{display:none}
+.detail .lede{margin-top:60px;font-size:18px;font-weight:600;line-height:27px;color:var(--d-ink)}
+.dsec{margin-top:50px}
+.dsec h4{font-size:18px;font-weight:600;line-height:27px;margin-bottom:20px;color:var(--d-ink)}
+.dsec p{font-size:16px;line-height:26px;color:var(--d-body)}
 .dsec ul.dots{list-style:none;display:flex;flex-direction:column;gap:8px}
 .dsec ul.dots li{position:relative;padding-left:16px;color:var(--ink-2)}
 .dsec ul.dots li::before{content:"";position:absolute;left:2px;top:11px;width:4px;height:4px;border-radius:50%;background:var(--ink-2)}
-.steps{list-style:none;counter-reset:s;display:flex;flex-direction:column;border-top:1px solid var(--line)}
-.steps li{counter-increment:s;display:grid;grid-template-columns:44px 120px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--en);font-weight:600;font-size:14px;color:var(--ink-3)}
-.steps b{font-weight:700}
-.steps span{color:var(--ink-2)}
-.steps li.res b{color:var(--ink)}
-.events{display:flex;flex-direction:column;border-top:1px solid var(--line)}
-.event{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);align-items:center}
-.event .big{font-family:var(--en);font-weight:700;font-size:30px;line-height:1}
-.event .big small{font-family:var(--ko);font-size:14px;font-weight:600;margin-left:3px;color:var(--ink-2)}
+.steps{list-style:none;counter-reset:s;display:flex;flex-direction:column;border-top:1px solid var(--d-line)}
+.steps li{counter-increment:s;display:grid;grid-template-columns:44px 120px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--d-line);align-items:baseline;line-height:26px}
+.steps li::before{content:counter(s,decimal-leading-zero);font-weight:600;font-size:14px;color:var(--d-meta)}
+.steps b{font-weight:600;color:var(--d-ink)}
+.steps span{color:var(--d-body)}
+.events{display:flex;flex-direction:column;border-top:1px solid var(--d-line)}
+.event{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--d-line);align-items:center}
+.event .big{font-weight:700;font-size:26px;line-height:1;color:var(--d-ink)}
+.event .big small{font-size:14px;font-weight:600;margin-left:3px;color:var(--d-body)}
 .event .big small.pre{margin:0 4px 0 0}
-.event .t{font-weight:700}
-.event .s{font-size:14px;color:var(--ink-3)}
-.note{margin-top:14px;font-size:14px;color:var(--ink-3)}
-.side{position:sticky;top:88px;border:1px solid var(--line);border-radius:12px;padding:28px}
-.side dl{display:grid;grid-template-columns:72px 1fr;gap:12px 10px;font-size:14px}
-.side dt{color:var(--ink-3)}
-.side dd{font-weight:600}
-.side dd .sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:0}
-.side .btns{display:flex;flex-direction:column;gap:8px;margin-top:24px}
+.event .t{font-weight:600;color:var(--d-ink)}
+.event .s{font-size:14px;color:var(--d-meta)}
+.events.ppl{margin-top:20px}
+.events.ppl .event{grid-template-columns:150px 1fr}
+.dsec ul.disc{list-style:disc;padding-left:20px;font-size:16px;line-height:26px;color:var(--d-body)}
+.d-count span{font-weight:400;color:var(--d-meta)}
+.note{margin-top:14px;font-size:14px;color:var(--d-meta)}
+.detail figure.ph figcaption{font-size:14px;color:var(--d-meta)}
 .btn{display:flex;justify-content:center;align-items:center;gap:6px;height:48px;border-radius:8px;font-weight:700;font-size:15px;border:1px solid var(--line);white-space:nowrap}
 .btn:hover{background:var(--soft)}
 .btn.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
 .btn.dark:hover{background:#333}
 .btn.sm{height:36px;font-size:13px;padding:0 14px;display:inline-flex;border-radius:8px}
 .links{display:flex;flex-wrap:wrap;gap:8px}
-.dnav{display:flex;justify-content:space-between;gap:12px;margin-top:64px;padding-top:24px;border-top:1px solid var(--line)}
-.dnav button{text-align:left;font-size:14px;color:var(--ink-3)}
-.dnav button b{display:block;color:var(--ink);font-size:16px;margin-top:2px}
-.dnav button.nx{text-align:right;margin-left:auto}
+.d-link{display:inline-flex;align-items:center;padding:8px 12px;border-radius:4px;background:var(--d-soft);font-size:16px;line-height:26px;color:var(--d-body)}
+.d-link:hover{background:#efeff1;color:var(--d-ink)}
+.d-bottom{display:inline-flex;align-items:center;gap:8px;margin-top:72px;font-size:18px;font-weight:800;line-height:27px;color:var(--d-ink-2)}
 
 /* ---------- 사진 자리 ---------- */
 .photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
@@ -274,8 +293,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
 @media (max-width:1080px){
   .board{grid-template-columns:240px 1fr;gap:48px}
-  .detail{grid-template-columns:1fr;gap:40px}
-  .side{position:static}
+  .detail{grid-template-columns:minmax(0,1fr);gap:64px}
+  .d-side{order:2}
+  .d-side .back{display:none}
+  .back-m{display:inline-flex!important;margin-bottom:32px}
+  .d-count{margin-top:0}
+  .d-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
   .tiles{grid-template-columns:repeat(3,1fr)}
   .tile:nth-child(4){border-left:0;padding-left:0}
   .tiles .tile{border-bottom:1px solid var(--line)}
@@ -314,6 +337,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .steps li span{grid-column:2}
   .event{grid-template-columns:96px 1fr}
   .event .big{font-size:24px}
+  .events.ppl .event{grid-template-columns:120px 1fr}
+  .d-head{flex-direction:column;gap:20px}
+  .detail h2{font-size:22px}
+  .d-banner{margin-top:40px}
+  .detail .lede{margin-top:40px}
+  .d-bottom{margin-top:56px}
   .quote{grid-template-columns:1fr;gap:10px;padding:30px 0}
   .quote blockquote{font-size:22px}
   .quests{grid-template-columns:1fr}
@@ -680,6 +709,30 @@ const DAILY = [
   {name:'채용·정산', items:['채용 업무','연말정산','인력지원비']},
 ];
 
+/* ALL 목록 맨 위에 고정되는 상시 업무(일상업무). 필터와 상관없이 항상 보이고,
+   영역 필터를 걸면 그 영역의 업무가 '관련 업무'로 함께 보인다. 프로젝트 개수·Stats 차트에는 넣지 않는다.
+   cat: 연결할 영역(CATS의 id) · k: 목록에 보이는 짧은 이름 · t: 상세 페이지 문구 */
+const ROUTINE = {
+  id:'routine', short:'HRM 일상업무 (상시)', start:JOIN_DATE,
+  scope:{ what:'근태·평가·보상 등 HRM 운영',
+    people:[{n:'600', t:'동아일보 임직원', s:''},
+            {n:'1,500', t:'동아미디어그룹 계열사 인원', s:'동아일보, 채널에이, 동아닷컴 등'}],
+    note:'* 각 법인은 인사팀을 따로 두고 있음' },
+  items:[
+    {cat:'labor',   k:'휴가·휴직',                 t:'휴가·휴직 등 근태관리업무 수행'},
+    {cat:'labor',   k:'출장·휴일·초과근무',        t:'출장·휴일근무·초과근무 등 근태관리업무 수행'},
+    {cat:'labor',   k:'정기사원평가 보조',         t:'정기사원평가 보조 업무 수행'},
+    {cat:'labor',   k:'다면평가',                  t:'다면평가 업무 수행'},
+    {cat:'labor',   k:'면수습·정규직 전환 평가',   t:'수습사원 면수습평가·계약사원 정규직전환 평가 업무 수행'},
+    {cat:'labor',   k:'인사위원회·표창심의위원회', t:'정기인사위원회·표창심의위원회 업무 수행'},
+    {cat:'labor',   k:'계열사 간 전적',            t:'동아미디어그룹 계열사 간 전적 업무 처리(계열사 인사팀과 협업해 근로관계 승계 및 근속·연차 등 인사 정보 이관)'},
+    {cat:'comp',    k:'휴일·초과근무·미사용연차 수당', t:'휴일근무수당, 초과근무수당, 미사용연차보상 수당 관리'},
+    {cat:'comp',    k:'복지포인트 운영',           t:'복지포인트 제도 운영'},
+    {cat:'comp',    k:'연말정산 보조',             t:'연말정산 보조 업무 수행'},
+    {cat:'comp',    k:'인력지원비',                t:'인력지원비'},
+    {cat:'recruit', k:'채용업무 전반',             t:'채용업무 전반(수습사원 공채, 계약직, 경력스카우트)'},
+  ]};
+
 const COVERAGE = [
   ['채용',         ['채용 업무'],                                   [['채용설명회 3회','recruit']]],
   ['근태',         ['휴가·휴직','출장·휴일·초과근무'],               [['근태관리 프로그램','shiftee'],['금쪽사랑휴가','geumjjok']]],
@@ -745,7 +798,7 @@ function fgroup(el, key, title, items){
 function buildFilters(){
   fgroup(document.getElementById('fg-cat'),'cat','영역',CATS.map(c=>({v:c.id,label:c.name,n:PROJECTS.filter(p=>p.cat===c.id).length})));
   fgroup(document.getElementById('fg-type'),'type','유형',TYPES.map(t=>({v:t.id,label:t.short,n:PROJECTS.filter(p=>p.type===t.id).length})));
-  fgroup(document.getElementById('fg-year'),'year','진행 연도',YEARS.map(y=>({v:y,label:y+'년',n:PROJECTS.filter(p=>p.years.includes(y)).length})));
+  fgroup(document.getElementById('fg-year'),'year','진행 연도',[...YEARS].reverse().map(y=>({v:y,label:y+'년',n:PROJECTS.filter(p=>p.years.includes(y)).length})));
   document.getElementById('clearF').onclick=()=>{ F.cat.clear();F.type.clear();F.year.clear(); document.querySelectorAll('.filters input').forEach(i=>i.checked=false); renderRows(); };
   const ft=document.getElementById('ftoggle'), fl=document.getElementById('filters');
   ft.onclick=()=>{ const o=fl.classList.toggle('open'); ft.setAttribute('aria-expanded',o); };
@@ -753,59 +806,87 @@ function buildFilters(){
 const hay = p => [p.title,p.short,p.headline,catOf(p.cat).name,typeOf(p.type).short,...p.qa.flat(),...(p.flow||[]).flat(),...(p.tags||[]),...(p.events||[]).map(e=>e.t+e.s)].join(' ').toLowerCase();
 function filtered(){ const q=F.q.trim().toLowerCase();
   return [...PROJECTS].reverse().filter(p=>(!F.cat.size||F.cat.has(p.cat))&&(!F.type.size||F.type.has(p.type))&&(!F.year.size||p.years.some(y=>F.year.has(y)))&&(!q||q.split(/\s+/).every(w=>hay(p).includes(w)))); }
+/* 일상업무 줄: 필터를 걸어도 항상 보이고, 영역 필터·검색어에 맞는 업무를 '관련 업무'로 보여준다. 검색어가 어디에도 안 맞으면 숨긴다. */
+const ROUTINE_START = D(ROUTINE.start);
+function routineMatch(){ const q=F.q.trim().toLowerCase(), words=q?q.split(/\s+/):[];
+  const items=ROUTINE.items.filter(i=>!F.cat.size||F.cat.has(i.cat));
+  if(words.length){ const hit=items.filter(i=>words.every(w=>(i.k+' '+i.t+' '+catOf(i.cat).name).toLowerCase().includes(w)));
+    if(hit.length) return {show:true, rel:hit};
+    return {show:words.every(w=>'hrm 일상업무 상시 운영'.includes(w)), rel:F.cat.size?items:[]}; }
+  return {show:true, rel:F.cat.size?items:[]}; }
 function renderRows(){
-  const list=filtered();
+  const list=filtered(), rm=routineMatch(), R=ROUTINE;
   document.getElementById('countLine').textContent=`${list.length}개의 프로젝트가 있습니다.`;
   document.getElementById('queryLine').innerHTML = F.q ? `‘${esc(F.q)}’ 검색 결과<button type="button" id="clearQ">검색 지우기</button>` : '';
   const cq=document.getElementById('clearQ'); if(cq) cq.onclick=()=>{ F.q=''; document.getElementById('q').value=''; renderRows(); };
-  document.getElementById('rows').innerHTML = list.length ? list.map(p=>`
+  const routineRow = !rm.show ? '' : `
+    <div class="row pin">
+      <a class="main" href="#all/${R.id}">
+        <h3>[${ORG}] ${esc(R.short)}</h3>
+        <div class="meta"><span>전 영역</span><span>운영</span><span>${fmtD(ROUTINE_START)} – </span><span class="live">상시</span></div>
+        ${rm.rel.length?`<p class="rel"><b>관련 업무</b>${rm.rel.map(i=>esc(i.k)).join(', ')}</p>`:''}
+      </a>
+      <div class="acts"><button type="button" aria-label="${esc(R.short)} 링크 복사" data-share="${R.id}">${ICON_SHARE}</button><a href="#all/${R.id}" aria-label="${esc(R.short)} 상세 보기" style="width:28px;height:28px;display:grid;place-items:center">${ICON_ARROW}</a></div>
+    </div>`;
+  document.getElementById('rows').innerHTML = routineRow + (list.length ? list.map(p=>`
     <div class="row">
       <a class="main" href="#all/${p.id}">
         <h3>[${ORG}] ${esc(p.short)}</h3>
         <div class="meta"><span>${catOf(p.cat).name}</span><span>${typeOf(p.type).short}</span><span>${fmtD(p.s)} – ${p.ongoing?'':fmtD(p.e)}</span>${p.ongoing?'<span class="live">진행 중</span>':`<span>${fmtMonths(p.months)}</span>`}</div>
       </a>
       <div class="acts"><button type="button" aria-label="${esc(p.short)} 링크 복사" data-share="${p.id}">${ICON_SHARE}</button><a href="#all/${p.id}" aria-label="${esc(p.short)} 상세 보기" style="width:28px;height:28px;display:grid;place-items:center">${ICON_ARROW}</a></div>
-    </div>`).join('') : `<div class="empty">조건에 맞는 프로젝트가 없어요.</div>`;
+    </div>`).join('') : `<div class="empty">조건에 맞는 프로젝트가 없어요.</div>`);
   document.querySelectorAll('[data-share]').forEach(b=>b.onclick=()=>copyLink(b.dataset.share));
 }
-function renderDetail(id){
-  const p=PROJECTS.find(x=>x.id===id), c=catOf(p.cat), t=typeOf(p.type);
-  const i=PROJECTS.indexOf(p), prev=PROJECTS[i-1], next=PROJECTS[i+1];
+const ICON_BACK = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+function routineBody(){ const R=ROUTINE, S=R.scope;
+  const scope = `<div class="dsec"><h4>대상</h4><p>${esc(S.what)}</p>
+    <div class="events ppl">${S.people.map(e=>`<div class="event"><span class="big"><small class="pre">약</small>${e.n}<small>명</small></span><span><span class="t">${esc(e.t)}</span>${e.s?`<br><span class="s">${esc(e.s)}</span>`:''}</span></div>`).join('')}</div>
+    <p class="note">${esc(S.note)}</p></div>`;
+  const byCat = CATS.map(c=>({c, items:R.items.filter(i=>i.cat===c.id)})).filter(g=>g.items.length);
+  return scope + byCat.map(g=>`<div class="dsec"><h4>${g.c.name}</h4><ul class="disc">${g.items.map(i=>`<li>${esc(i.t)}</li>`).join('')}</ul></div>`).join(''); }
+function projectBody(p){
   const secs = p.qa.map(q=>`<div class="dsec"><h4>${esc(q[0])}</h4><p>${esc(q[1])}</p></div>`).join('');
   const flow = p.events
     ? `<div class="dsec"><h4>만난 지원자</h4><div class="events">${p.events.map(e=>`<div class="event"><span class="big">${e.approx?'<small class="pre">약</small>':''}${e.n}<small>명</small></span><span><span class="t">${esc(e.t)}</span><br><span class="s">${esc(e.s)}</span></span></div>`).join('')}</div></div>`
     : p.flow ? `<div class="dsec"><h4>진행 흐름</h4><ol class="steps">${p.flow.map((f,k)=>`<li class="${k===p.flow.length-1?'res':''}"><b>${esc(f[0])}</b><span>${esc(f[1])}</span></li>`).join('')}</ol>${p.note?`<p class="note">${esc(p.note)}</p>`:''}</div>` : '';
   const photos = p.photos ? `<div class="dsec"><h4>현장 기록</h4><div class="photos">${p.photos.map(ph=>photoSlot(ph[0],ph[1])).join('')}</div></div>` : '';
-  const links = p.links ? `<div class="dsec"><h4>관련 링크</h4><div class="links">${p.links.map(l=>`<a class="btn sm" href="${l[1]}" target="_blank" rel="noopener">${esc(l[0])} ↗</a>`).join('')}</div></div>` : '';
+  const links = p.links ? `<div class="dsec"><h4>관련 링크</h4><div class="links">${p.links.map(l=>`<a class="d-link" href="${l[1]}" target="_blank" rel="noopener">${esc(l[0])} ↗</a>`).join('')}</div></div>` : '';
+  return `<p class="lede">${esc(p.headline)}</p>${secs}${flow}${photos}${links}`; }
+function renderDetail(id){
+  const isR = id===ROUTINE.id, p = isR ? null : PROJECTS.find(x=>x.id===id), T = tenure();
+  const v = isR
+    ? {short:ROUTINE.short, title:ROUTINE.short, meta:['전 영역','운영',`${fmtDD(ROUTINE_START)} – 상시`,`${T.y}년 ${T.m}개월`], body:routineBody()}
+    : {short:p.short, title:p.title, meta:[catOf(p.cat).name, typeOf(p.type).short, `${fmtDD(p.s)} – ${p.ongoing?'진행 중':fmtDD(p.e)}`, fmtMonths(p.months)], body:projectBody(p)};
+  const period = q => `${fmtD(q.s)} – ${q.ongoing?'진행 중':fmtD(q.e)}`;
+  const card = (cid, short, m) => `<a class="d-card" href="#all/${cid}"${cid===id?' aria-current="page"':''}><span class="org">${ORG}</span><h4>${esc(short)}</h4><div class="m">${m.map(x=>`<span>${x}</span>`).join('')}</div></a>`;
+  const cards = card(ROUTINE.id, ROUTINE.short, ['전 영역', `${fmtD(ROUTINE_START)} – 상시`])
+    + [...PROJECTS].reverse().map(q=>card(q.id, q.short, [catOf(q.cat).name, period(q)])).join('');
   const el=document.getElementById('detailView');
   el.innerHTML=`
-   <a class="back" href="#all">← 전체 프로젝트</a>
    <div class="detail">
-    <article>
-      <h2>[${ORG}] ${esc(p.title)}</h2>
-      <p class="lede">${esc(p.headline)}</p>
-      <div class="meta"><span>${c.name}</span><span>${t.short}</span><span>${fmtDD(p.s)} – ${p.ongoing?'진행 중':fmtDD(p.e)}</span><span>${fmtMonths(p.months)}</span></div>
-      ${secs}${flow}${photos}${links}
-      <div class="dnav">
-        ${prev?`<button type="button" data-go="${prev.id}">← 이전 프로젝트<b>${esc(prev.short)}</b></button>`:'<span></span>'}
-        ${next?`<button type="button" class="nx" data-go="${next.id}">다음 프로젝트 →<b>${esc(next.short)}</b></button>`:''}
-      </div>
-    </article>
-    <aside class="side">
-      <dl>
-        <dt>번호</dt><dd>STAGE ${p.no}</dd>
-        <dt>영역</dt><dd><span class="sw" style="background:${c.hex}"></span>${c.name}</dd>
-        <dt>유형</dt><dd>${t.short}</dd>
-        <dt>기간</dt><dd>${fmtD(p.s)} – ${p.ongoing?'진행 중':fmtD(p.e)}</dd>
-        <dt>소요</dt><dd>${fmtMonths(p.months)}${p.ongoing?' (진행 중)':''}</dd>
-      </dl>
-      <div class="btns">
-        <a class="btn dark" href="mailto:rkdgmaals@naver.com?subject=${encodeURIComponent('[포트폴리오] '+p.short+' 문의')}">이 프로젝트 더 물어보기</a>
-        <button type="button" class="btn" data-share="${p.id}">${ICON_SHARE} 링크 복사</button>
-      </div>
+    <aside class="d-side">
+      <a class="back" href="#all">${ICON_BACK}돌아가기</a>
+      <div class="d-count">프로젝트 총 ${PROJECTS.length}건 <span>+ 상시 1건</span></div>
+      <nav class="d-cards" aria-label="전체 프로젝트">${cards}</nav>
     </aside>
+    <article>
+      <a class="back back-m" href="#all">${ICON_BACK}돌아가기</a>
+      <div class="d-head">
+        <div>
+          <h2>[${ORG}] ${esc(v.title)}</h2>
+          <div class="d-meta">${v.meta.map(x=>`<span>${x}</span>`).join('')}</div>
+        </div>
+        <div class="d-acts">
+          <button type="button" class="d-icon" data-share="${id}" aria-label="링크 복사" title="링크 복사">${ICON_SHARE}</button>
+          <a class="d-apply" href="mailto:rkdgmaals@naver.com?subject=${encodeURIComponent('[포트폴리오] '+v.short+' 문의')}">더 물어보기</a>
+        </div>
+      </div>
+      ${photoSlot('banner-'+id, v.short+' 대표 사진', 'd-banner')}
+      ${v.body}
+      <a class="d-bottom" href="#all">${ICON_BACK}전체 프로젝트로 가기</a>
+    </article>
    </div>`;
-  el.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go('all/'+b.dataset.go));
   el.querySelectorAll('[data-share]').forEach(b=>b.onclick=()=>copyLink(b.dataset.share));
   loadPhotos(el);
 }
@@ -969,7 +1050,7 @@ function route(){
   const [tab,sub]=(location.hash.slice(1)||'all').split('/'); const t=TABS.includes(tab)?tab:'all';
   document.querySelectorAll('.tab').forEach(b=>{ const on=b.dataset.tab===t; b.setAttribute('aria-selected',on); b.tabIndex=on?0:-1; });
   document.querySelectorAll('section.panel').forEach(s=>s.classList.toggle('on',s.id===t));
-  const isDetail = t==='all' && sub && PROJECTS.some(p=>p.id===sub);
+  const isDetail = t==='all' && sub && (sub===ROUTINE.id || PROJECTS.some(p=>p.id===sub));
   document.getElementById('boardView').hidden=isDetail; document.getElementById('detailView').hidden=!isDetail;
   if(isDetail) renderDetail(sub);
   if(t==='stats') renderStats();
