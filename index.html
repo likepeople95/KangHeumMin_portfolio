@@ -16,7 +16,7 @@
 :root{
   --bg:#ffffff; --soft:#f6f6f7; --soft-2:#efeff1; --line:#e5e5e8; --grid:#eeeef0;
   --ink:#111111; --ink-2:#555559; --ink-3:#8e8e93; --ink-4:#b4b4b9;
-  --c-policy:#1c1c1e; --c-comp:#4a4a4f; --c-labor:#7a7a80; --c-recruit:#a8a8ae; --c-ai:#d2d2d7; --c-ops:#ffffff;
+  --c-policy:#17325f; --c-comp:#2f5a9e; --c-labor:#5d86c9; --c-recruit:#94b3e3; --c-ai:#c8d9f2; --c-ops:#ffffff;
   --en:'Poppins','Pretendard',sans-serif;
   --ko:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;
   color-scheme:light;
@@ -181,7 +181,6 @@ section.panel.on{display:block}
 .btn:hover{background:var(--soft)}
 .btn.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
 .btn.dark:hover{background:#333}
-.btn.sm{height:36px;font-size:13px;padding:0 14px;display:inline-flex;border-radius:8px}
 .links{display:flex;flex-wrap:wrap;gap:8px}
 .d-link{display:inline-flex;align-items:center;padding:8px 12px;border-radius:4px;background:var(--d-soft);font-size:16px;line-height:26px;color:var(--d-body)}
 .d-link:hover{background:#efeff1;color:var(--d-ink)}
@@ -263,13 +262,6 @@ svg text{font-family:var(--ko)}
 .map-note i{display:inline-block;width:18px;height:2px;background:var(--ink)}
 .map-note i.ops{background:var(--c-ops);height:8px;border-radius:4px;box-shadow:inset 0 0 0 1px var(--ink-4)}
 .map-note i.dm{width:9px;height:9px;background:#fff;border:2px solid var(--ink);transform:rotate(45deg)}
-.data-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
-.data-table th,.data-table td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}
-.data-table th{color:var(--ink-3);font-weight:500;font-size:13px}
-.data-table .num{text-align:right;font-variant-numeric:tabular-nums}
-.tbl{display:none}
-.show-table .tbl{display:block}
-.show-table .viz{display:none}
 #tip{position:fixed;z-index:100;pointer-events:none;background:var(--ink);color:#fff;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5;max-width:280px;opacity:0;transition:opacity .12s}
 #tip.on{opacity:1}
 #tip .tt{font-weight:700;font-size:14px;margin-bottom:2px}
@@ -486,7 +478,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div class="chart" id="ganttCard">
         <div class="toolbar">
           <div class="chips" id="mapChips"></div>
-          <button class="btn sm" data-toggle="ganttCard">표로 보기</button>
         </div>
         <div class="viz">
           <p class="swipe">← 옆으로 밀어서 보기 →</p>
@@ -495,7 +486,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
             <span><i class="ops"></i>일상업무(HRM 운영)</span><span><i></i>오늘</span><span><i class="dm"></i>관련 사건</span><span>› 진행 중</span>
           </div>
         </div>
-        <div class="tbl" id="ganttTable"></div>
       </div>
     </div>
   </section>
@@ -553,11 +543,11 @@ const CONTACT = [['이름','강흠민'], ['소속','동아일보 경영지원국
    데이터 — 여기 숫자·날짜만 고치면 목록과 차트가 같이 바뀝니다
    ========================================================= */
 const CATS = [
-  {id:'policy',  name:'제도 기획', en:'Policy', hex:'#1c1c1e', on:'#fff'},
-  {id:'comp',    name:'보상·복지', en:'C&B', hex:'#4a4a4f', on:'#fff'},
-  {id:'labor',   name:'노무·근태', en:'Labor', hex:'#7a7a80', on:'#fff'},
-  {id:'recruit', name:'채용', en:'Recruiting',      hex:'#a8a8ae', on:'#111'},
-  {id:'ai',      name:'AI·학습', en:'AI',   hex:'#d2d2d7', on:'#111'},
+  {id:'policy',  name:'제도 기획', en:'Policy', hex:'#17325f'},
+  {id:'comp',    name:'보상·복지', en:'C&B', hex:'#2f5a9e'},
+  {id:'labor',   name:'노무·근태', en:'Labor', hex:'#5d86c9'},
+  {id:'recruit', name:'채용', en:'Recruiting',      hex:'#94b3e3'},
+  {id:'ai',      name:'AI·학습', en:'AI',   hex:'#c8d9f2'},
 ];
 const TYPES = [{id:'new',name:'새로 만들었다',short:'신설'},{id:'fix',name:'고쳤다',short:'개정·개편'},{id:'run',name:'운영했다',short:'운영'}];
 const JOIN_DATE = '2022-03-14';
@@ -868,7 +858,6 @@ function renderGantt(){
   });
   s+='</svg>'; const el=document.getElementById('gantt'); el.innerHTML=s; bindTips(el);
   el.querySelectorAll('[data-id]').forEach(h=>h.addEventListener('click',()=>{hideTip(); go('all/'+h.dataset.id);}));
-  document.getElementById('ganttTable').innerHTML=`<table class="data-table"><thead><tr><th>번호</th><th>프로젝트</th><th>영역</th><th>유형</th><th>기간</th><th class="num">개월</th></tr></thead><tbody>${PROJECTS.map(p=>`<tr><td>${p.no}</td><td>${esc(p.title)}</td><td>${catOf(p.cat).name}</td><td>${typeOf(p.type).short}</td><td>${fmtDD(p.s)} – ${p.ongoing?'진행 중':fmtDD(p.e)}</td><td class="num">${Math.max(1,Math.round(p.months))}</td></tr>`).join('')}</tbody></table>`;
 }
 
 /* =========================================================
@@ -913,7 +902,6 @@ function route(){
 }
 document.querySelectorAll('.tab').forEach((b,i,all)=>{ b.onclick=()=>go(b.dataset.tab);
   b.addEventListener('keydown',e=>{ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ const n=all[(i+(e.key==='ArrowRight'?1:all.length-1))%all.length]; n.focus(); go(n.dataset.tab); } }); });
-document.querySelectorAll('[data-toggle]').forEach(b=>b.onclick=()=>{ const c=document.getElementById(b.dataset.toggle), on=c.classList.toggle('show-table'); b.textContent=on?'차트로 보기':'표로 보기'; });
 document.getElementById('searchForm').onsubmit=e=>{ e.preventDefault(); F.q=document.getElementById('q').value; renderRows(); go('all'); };
 document.getElementById('q').addEventListener('input',e=>{ F.q=e.target.value; renderRows(); if(!location.hash.startsWith('#all')||location.hash.includes('/')) {} });
 /* 연락처 팝업 */
