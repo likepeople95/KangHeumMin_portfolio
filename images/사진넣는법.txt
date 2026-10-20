@@ -21,17 +21,22 @@
 
 사진 비율 그대로, 자르지 않고 보입니다. (사진이 없을 때의 빈 칸은 가로 5:2)
 
-  banner-geumjjok     금쪽사랑휴가 신설
-  banner-shiftee      근태관리 프로그램 운영
+  banner-geumjjok     금쪽사랑휴가 신설   → 지금은 회사 대표 사진
+  banner-shiftee      근태관리 프로그램 운영   → 지금은 회사 대표 사진
   banner-welfare      복지포인트 도입
-  banner-travel       출장여비 사규 개정
+  banner-travel       출장여비 사규 개정   → 지금은 회사 대표 사진
   banner-recruit      채용설명회 운영
-  banner-allowance    특별업무 추가수당 신설
-  banner-wage         통상임금 개편
-  banner-reemploy     정년 후 재고용 도입
-  banner-tuition      해외대학 학자금 기준 변경
+  banner-allowance    특별업무 추가수당 신설   → 지금은 회사 대표 사진
+  banner-wage         통상임금 개편   → 지금은 회사 대표 사진
+  banner-reemploy     정년 후 재고용 도입   → 지금은 회사 대표 사진
+  banner-tuition      해외대학 학자금 기준 변경   → 지금은 회사 대표 사진
   banner-peoplexity   AI 학습조직 ‘피플렉시티’
   banner-routine      HRM 일상업무 (상시)
+
+  banner-company      회사 대표 사진 (위에 "→ 지금은 회사 대표 사진"이라고 적힌 7개가 함께 씀)
+
+* 회사 대표 사진을 쓰는 프로젝트에 따로 사진을 넣으려면, index.html의 그 프로젝트 줄에서
+  banner:'banner-company', 부분을 지운 뒤 banner-{이름} 사진을 넣으세요.
 
 [사진을 아직 안 넣은 칸 숨기기]
 

@@ -54,7 +54,7 @@ CLAUDE.md               이 문서
 | `SHOW_EMPTY_PHOTO_SLOTS` | `false`로 바꾸면 사진이 없는 칸이 숨겨진다 |
 | `CATS` | 영역 5개와 색 (순서·색 고정, 아래 차트 규칙 참고) |
 | `TYPES` | 유형: 신설 / 개정·개편 / 운영 |
-| `PROJECTS` | 프로젝트 10개. `start`/`end`(진행 중이면 `end:null`), `secs`(중제목과 내용), `flow`(진행 흐름), `events`(채용설명회 회차), `photos`, `links`, `tags`(검색용) |
+| `PROJECTS` | 프로젝트 10개. `start`/`end`(진행 중이면 `end:null`), `secs`(중제목과 내용), `banner`(대표 사진 파일 이름, 없으면 `banner-{id}`), `flow`(진행 흐름), `events`(채용설명회 회차), `photos`, `links`, `tags`(검색용) |
 | `DAILY` | Play Style 탭의 "매일 하는 기본 업무" |
 | `ROUTINE` | ALL 목록 맨 위에 고정되는 "HRM 일상업무 (상시)". 필터와 상관없이 항상 보이고, 영역 필터를 걸면 그 영역의 업무가 "관련 업무"로 함께 보인다. 프로젝트 개수·Stats 차트에는 넣지 않는다. 업무마다 `cat`(연결할 영역)·`k`(짧은 이름)·`t`(상세 문구) |
 | `COVERAGE` | Stats 탭의 HRM 커버리지 맵 |
@@ -67,6 +67,7 @@ CLAUDE.md               이 문서
 `images/` 폴더에 정해진 이름으로 넣으면 자동으로 들어간다. 확장자는 jpg / jpeg / png / webp 모두 된다.
 `profile`, `geumjjok`, `shiftee`, `welfare`, `allowance`, `recruit-2024`, `recruit-2025`, `recruit-2026`, `peoplexity-1`, `peoplexity-2`.
 프로젝트 상세 페이지 제목 아래 대표 사진(배너, 자르지 않고 사진 비율 그대로 표시)은 `banner-{프로젝트 id}` (예: `banner-geumjjok`).
+프로젝트에 `banner:'banner-company'`가 있으면 회사 대표 사진(`images/banner-company.png`)을 쓴다. 지금은 금쪽사랑휴가·시프티·출장여비·추가수당·통상임금·재고용·학자금 7개.
 Vercel은 대소문자를 구분하니 파일 이름은 소문자로 맞춘다.
 사진에 동료 얼굴이나 내부 문서가 보이면 올리기 전에 사용자에게 확인한다.
 
