@@ -216,17 +216,17 @@ figure.ph.hidden{display:none}
 .kv th{width:140px;text-align:left;font-weight:500;color:var(--ink-3);padding:16px 0;border-bottom:1px solid var(--line);font-size:15px;vertical-align:top}
 .kv td{padding:16px 0;border-bottom:1px solid var(--line);font-size:15px;word-break:keep-all}
 .tiles{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.tile{padding:28px 22px;text-align:left;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:6px;transition:background .15s}
+.tile{padding:28px 22px;text-align:left;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
 .tile:first-child{border-left:0;padding-left:0}
-button.tile:hover{background:var(--soft)}
 .tile .v{font-family:var(--en);font-weight:700;font-size:34px;line-height:1.1;letter-spacing:-1px}
 .tile .v small{font-family:var(--ko);font-size:15px;font-weight:600;margin-left:2px;letter-spacing:0}
 .tile .l{font-size:14px;color:var(--ink-2)}
 .cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
 .col h4{font-size:15px;font-weight:700;padding-bottom:12px;border-bottom:1px solid var(--ink);margin-bottom:6px}
-.col ul{list-style:none}
-.col li{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;word-break:keep-all;overflow-wrap:anywhere}
-.col li .t{color:var(--ink-3);font-size:14px;min-width:84px;flex:none}
+/* 왼쪽 항목 이름 폭을 열 안에서 가장 긴 것에 맞춰, 오른쪽 설명이 한 줄로 정렬되게 한다 */
+.col ul{list-style:none;display:grid;grid-template-columns:max-content 1fr}
+.col li{display:grid;grid-template-columns:auto 1fr;grid-template-columns:subgrid;grid-column:1/-1;column-gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;word-break:keep-all;overflow-wrap:anywhere}
+.col li .t{color:var(--ink-3);font-size:14px}
 .col li .nw{white-space:nowrap}
 
 /* ---------- 차트 ---------- */
@@ -831,16 +831,15 @@ function renderDetail(id){
    Profile
    ========================================================= */
 function renderProfile(){
-  const t=tenure(), sys=PROJECTS.filter(p=>p.type!=='run'&&p.cat!=='ai').length, rec=PROJECTS.find(p=>p.id==='recruit').events.reduce((a,e)=>a+e.n,0);
+  const t=tenure(), rec=PROJECTS.find(p=>p.id==='recruit').events.reduce((a,e)=>a+e.n,0);
   const items=[
-    {v:`${t.y}<small>년</small> ${t.m}<small>개월</small>`, l:'인사팀 HRM 실무', go:'career'},
-    {v:`600<small>명</small>`, l:'근태·평가·보상 운영 규모 (약)', go:'style'},
-    {v:`${sys}<small>건</small>`, l:'직접 신설·개편한 인사제도', go:'all'},
-    {v:`${Math.floor(rec/10)*10}<small>명+</small>`, l:'채용설명회에서 만난 지원자', go:'all/recruit'},
-    {v:`20<small>명</small>`, l:'함께 배우는 AI 학습조직', go:'all/peoplexity'},
+    {v:`${t.y}<small>년</small> ${t.m}<small>개월</small>`, l:'인사팀 HRM 실무'},
+    {v:`600<small>명</small>`, l:'근태·평가·보상 운영 규모 (약)'},
+    {v:`${PROJECTS.length}<small>건</small>`, l:'직접 맡은 인사 프로젝트'},
+    {v:`${Math.floor(rec/10)*10}<small>명+</small>`, l:'채용설명회에서 만난 지원자'},
+    {v:`20<small>명</small>`, l:'함께 배우는 AI 학습조직'},
   ];
-  document.getElementById('tiles').innerHTML=items.map(s=>`<button class="tile" data-go="${s.go}"><span class="v">${s.v}</span><span class="l">${s.l}</span></button>`).join('');
-  document.querySelectorAll('#tiles [data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));
+  document.getElementById('tiles').innerHTML=items.map(s=>`<div class="tile"><span class="v">${s.v}</span><span class="l">${s.l}</span></div>`).join('');
 }
 
 /* =========================================================
