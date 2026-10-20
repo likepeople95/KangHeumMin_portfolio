@@ -16,8 +16,8 @@
 :root{
   --bg:#ffffff; --soft:#f6f6f7; --soft-2:#efeff1; --line:#e5e5e8; --grid:#eeeef0;
   --ink:#111111; --ink-2:#555559; --ink-3:#8e8e93; --ink-4:#b4b4b9;
-  --c-policy:#2a78d6; --c-comp:#eb6834; --c-labor:#1baf7a; --c-recruit:#eda100; --c-ai:#e87ba4; --c-ops:#c7c7cc;
-  --seq-1:#dbe9f8; --seq-2:#a9cbef; --seq-3:#5f9ce0; --seq-4:#2a78d6;
+  --c-policy:#1c1c1e; --c-comp:#4a4a4f; --c-labor:#7a7a80; --c-recruit:#a8a8ae; --c-ai:#d2d2d7; --c-ops:#ffffff;
+  --seq-1:#e9e9ec; --seq-2:#d2d2d7; --seq-3:#7a7a80; --seq-4:#2c2c2e;
   --en:'Poppins','Pretendard',sans-serif;
   --ko:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;
   color-scheme:light;
@@ -263,7 +263,7 @@ svg text{font-family:var(--ko)}
 .map-note{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:13px;color:var(--ink-3)}
 .map-note span{display:inline-flex;align-items:center;gap:6px}
 .map-note i{display:inline-block;width:18px;height:2px;background:var(--ink)}
-.map-note i.ops{background:var(--c-ops);height:8px;border-radius:4px}
+.map-note i.ops{background:var(--c-ops);height:8px;border-radius:4px;box-shadow:inset 0 0 0 1px var(--ink-4)}
 .map-note i.dm{width:9px;height:9px;background:#fff;border:2px solid var(--ink);transform:rotate(45deg)}
 .data-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
 .data-table th,.data-table td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}
@@ -272,7 +272,7 @@ svg text{font-family:var(--ko)}
 .tbl{display:none}
 .show-table .tbl{display:block}
 .show-table .viz{display:none}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:20px}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:20px}
 .kpis .tile:first-child{padding-left:0}
 .matrix{display:grid;grid-template-columns:140px 1fr 1fr;gap:4px;font-size:14px}
 .matrix .mh{font-size:13px;color:var(--ink-3);padding:6px 10px}
@@ -291,7 +291,7 @@ svg text{font-family:var(--ko)}
 #tip.on{opacity:1}
 #tip .tt{font-weight:700;font-size:14px;margin-bottom:2px}
 #tip .r{display:flex;gap:8px;align-items:center;color:#d9d9de}
-#tip .sw{width:9px;height:9px;border-radius:2px;flex:none}
+#tip .sw{width:9px;height:9px;border-radius:2px;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,.55)}
 
 /* ---------- Style ---------- */
 .quotes{display:flex;flex-direction:column;border-top:2px solid var(--ink)}
@@ -525,14 +525,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </div>
         <div class="tbl" id="ganttTable"></div>
       </div>
-      <div class="chart" id="concCard">
-        <div class="chart-head">
-          <div><h3>같은 달에 함께 진행한 프로젝트 수</h3><p class="sub">일상업무는 빼고, 위에서 고른 영역만 셉니다</p></div>
-          <button class="btn sm" data-toggle="concCard">표로 보기</button>
-        </div>
-        <div class="viz"><div class="scroll-x"><div id="conc" class="wide"></div></div></div>
-        <div class="tbl" id="concTable"></div>
-      </div>
     </div>
   </section>
 
@@ -653,11 +645,11 @@ const CONTACT = [['이름','강흠민'], ['소속','동아일보 경영지원국
    데이터 — 여기 숫자·날짜만 고치면 목록과 차트가 같이 바뀝니다
    ========================================================= */
 const CATS = [
-  {id:'policy',  name:'제도 기획', en:'Policy', hex:'#2a78d6'},
-  {id:'comp',    name:'보상·복지', en:'C&B', hex:'#eb6834'},
-  {id:'labor',   name:'노무·근태', en:'Labor', hex:'#1baf7a'},
-  {id:'recruit', name:'채용', en:'Recruiting',      hex:'#eda100'},
-  {id:'ai',      name:'AI·학습', en:'AI',   hex:'#e87ba4'},
+  {id:'policy',  name:'제도 기획', en:'Policy', hex:'#1c1c1e', on:'#fff'},
+  {id:'comp',    name:'보상·복지', en:'C&B', hex:'#4a4a4f', on:'#fff'},
+  {id:'labor',   name:'노무·근태', en:'Labor', hex:'#7a7a80', on:'#fff'},
+  {id:'recruit', name:'채용', en:'Recruiting',      hex:'#a8a8ae', on:'#111'},
+  {id:'ai',      name:'AI·학습', en:'AI',   hex:'#d2d2d7', on:'#111'},
 ];
 const TYPES = [{id:'new',name:'새로 만들었다',short:'신설'},{id:'fix',name:'고쳤다',short:'개정·개편'},{id:'run',name:'운영했다',short:'운영'}];
 const JOIN_DATE = '2022-03-14';
@@ -957,7 +949,7 @@ function renderProfile(){
 }
 
 /* =========================================================
-   Career — 간트 + 동시 진행 수
+   Career — 간트
    ========================================================= */
 const mapState=new Set(CATS.map(c=>c.id));
 const X0=new Date('2022-01-01T00:00:00'), X1=new Date(Math.max(new Date('2026-12-31T00:00:00'),TODAY));
@@ -979,7 +971,7 @@ function renderGantt(){
   const tx=gx(TODAY); s+=`<line x1="${tx}" x2="${tx}" y1="${top-8}" y2="${H-6}" stroke="var(--ink)" stroke-width="1.5"/><text class="ax" x="${tx}" y="${top-14}" text-anchor="middle" style="fill:var(--ink);font-weight:700">오늘</text>`;
   placed.forEach(r=>{
     if(r.kind==='group'){ s+=`<text class="ax" x="0" y="${r.y+16}" style="font-size:11px">${r.cat.name}</text>`; return; }
-    if(r.kind==='ops'){ const x1=gx(D(OPS.start)), cy=r.y+RH/2; s+=`<text class="lbl2" x="0" y="${cy+4}">${OPS.short}</text><rect x="${x1}" y="${cy-4}" width="${tx-x1}" height="8" rx="4" fill="var(--c-ops)"/>`;
+    if(r.kind==='ops'){ const x1=gx(D(OPS.start)), cy=r.y+RH/2; s+=`<text class="lbl2" x="0" y="${cy+4}">${OPS.short}</text><rect x="${x1}" y="${cy-4}" width="${tx-x1}" height="8" rx="4" fill="var(--c-ops)" stroke="var(--ink-4)"/>`;
       s+=`<rect class="hit" x="${x1}" y="${r.y}" width="${tx-x1}" height="${RH}" data-tip="${esc(`<div class='tt'>일상업무 · HRM 운영</div><div class='r'>2022.03.14 – 진행 중</div><div class='r'>근태·평가·보상 운영, 임직원 약 600명</div>`)}"/>`; return; }
     const p=r.p, c=catOf(p.cat), cy=r.y+RH/2, x1=gx(p.s), x2=Math.max(gx(p.e),x1+6), on=mapState.has(p.cat), lab=fmtMonths(p.months), lw=lab.length*7+10;
     s+=`<g class="mk ${on?'':'dim'}"><text class="lbl" x="0" y="${cy+4}">${esc(p.short)}</text><rect x="${x1}" y="${cy-7}" width="${x2-x1}" height="14" rx="4" fill="${c.hex}"/>`;
@@ -992,29 +984,6 @@ function renderGantt(){
   s+='</svg>'; const el=document.getElementById('gantt'); el.innerHTML=s; bindTips(el);
   el.querySelectorAll('[data-id]').forEach(h=>h.addEventListener('click',()=>{hideTip(); go('all/'+h.dataset.id);}));
   document.getElementById('ganttTable').innerHTML=`<table class="data-table"><thead><tr><th>번호</th><th>프로젝트</th><th>영역</th><th>유형</th><th>기간</th><th class="num">개월</th></tr></thead><tbody>${PROJECTS.map(p=>`<tr><td>${p.no}</td><td>${esc(p.title)}</td><td>${catOf(p.cat).name}</td><td>${typeOf(p.type).short}</td><td>${fmtDD(p.s)} – ${p.ongoing?'진행 중':fmtDD(p.e)}</td><td class="num">${Math.max(1,Math.round(p.months))}</td></tr>`).join('')}</tbody></table>`;
-}
-function monthsList(){ const o=[]; let d=new Date('2022-03-01T00:00:00'); while(d<=TODAY){ o.push(new Date(d)); d=new Date(d.getFullYear(),d.getMonth()+1,1);} return o; }
-const mEndOf=m=>new Date(m.getFullYear(),m.getMonth()+1,0), mNext=m=>new Date(m.getFullYear(),m.getMonth()+1,1);
-function renderConc(){
-  const data=monthsList().map(m=>{ const act=PROJECTS.filter(p=>mapState.has(p.cat)&&p.s<=mEndOf(m)&&p.e>=m); return {m,n:act.length,act}; });
-  const H=170, top=32, bot=28, ih=H-top-bot, max=Math.max(4,...data.map(d=>d.n)), yy=v=>top+ih-(v/max)*ih;
-  let s=`<svg viewBox="0 0 ${GW} ${H}" width="100%" role="img" aria-label="월별 동시 진행 프로젝트 수">`;
-  for(let v=0;v<=max;v++) s+=`<line x1="${GL}" x2="${GW-GR}" y1="${yy(v)}" y2="${yy(v)}" stroke="var(--grid)"/><text class="ax" x="${GL-10}" y="${yy(v)+4}" text-anchor="end">${v}</text>`;
-  [2022,2023,2024,2025,2026].forEach(y=>{ const x=gx(new Date(y+'-01-01T00:00:00')); s+=`<text class="ax" x="${Math.max(x,GL)+4}" y="${H-8}">${y}</text>`; });
-  let line='', area=`M${gx(data[0].m)} ${yy(0)}`;
-  data.forEach((d,i)=>{ const xa=gx(d.m), xb=gx(mNext(d.m)), y=yy(d.n); line+=(i?` L${xa} ${y}`:`M${xa} ${y}`)+` L${xb} ${y}`; area+=` L${xa} ${y} L${xb} ${y}`; });
-  area+=` L${gx(mNext(data[data.length-1].m))} ${yy(0)} Z`;
-  s+=`<path d="${area}" fill="#111" opacity=".06"/><path d="${line}" fill="none" stroke="#111" stroke-width="2" stroke-linejoin="round"/>`;
-  const pk=data.reduce((a,b)=>b.n>a.n?b:a,data[0]), pkx=(gx(pk.m)+gx(mNext(pk.m)))/2;
-  s+=`<circle cx="${pkx}" cy="${yy(pk.n)}" r="5" fill="#111" stroke="#fff" stroke-width="2"/><text class="val" x="${pkx}" y="${yy(pk.n)-11}" text-anchor="middle">최대 ${pk.n}개 · ${fmtD(pk.m)}</text>`;
-  s+=`<line id="cx" x1="0" x2="0" y1="${top}" y2="${top+ih}" stroke="var(--ink-3)" opacity="0"/><rect class="hit" id="concHit" x="${GL}" y="${top}" width="${GW-GL-GR}" height="${ih}" style="cursor:crosshair"/></svg>`;
-  const el=document.getElementById('conc'); el.innerHTML=s; const svg=el.querySelector('svg'), hit=el.querySelector('#concHit'), cx=el.querySelector('#cx');
-  hit.addEventListener('pointermove',ev=>{ const pt=svg.createSVGPoint(); pt.x=ev.clientX; pt.y=ev.clientY; const q=pt.matrixTransform(svg.getScreenCTM().inverse());
-    const d=data.find(d=>q.x>=gx(d.m)&&q.x<gx(mNext(d.m))); if(!d){hideTip();return;} const xm=(gx(d.m)+gx(mNext(d.m)))/2; cx.setAttribute('x1',xm); cx.setAttribute('x2',xm); cx.setAttribute('opacity',1);
-    showTip(`<div class="tt">${fmtD(d.m)} · ${d.n}개 진행</div>${d.act.map(p=>`<div class="r"><span class="sw" style="background:${catOf(p.cat).hex}"></span>${esc(p.short)}</div>`).join('')||'<div class="r">일상업무에 집중</div>'}`,ev); });
-  hit.addEventListener('pointerleave',()=>{hideTip(); cx.setAttribute('opacity',0);});
-  const by={}; data.forEach(d=>{(by[d.m.getFullYear()]=by[d.m.getFullYear()]||[]).push(d.n);});
-  document.getElementById('concTable').innerHTML=`<table class="data-table"><thead><tr><th>연도</th><th class="num">월평균 동시 진행</th><th class="num">최대</th></tr></thead><tbody>${Object.entries(by).map(([y,a])=>`<tr><td>${y}</td><td class="num">${(a.reduce((x,z)=>x+z,0)/a.length).toFixed(1)}</td><td class="num">${Math.max(...a)}</td></tr>`).join('')}</tbody></table>`;
 }
 
 /* =========================================================
@@ -1034,12 +1003,10 @@ function hbar(id,rows,unit){
 function renderStats(){
   const t=tenure();
   document.getElementById('tenureTitle').textContent=`${t.y}년 ${t.m}개월`;
-  const conc=monthsList().map(m=>({m,n:PROJECTS.filter(p=>p.s<=mEndOf(m)&&p.e>=m).length})), pk=conc.reduce((a,b)=>b.n>a.n?b:a), longest=PROJECTS.reduce((a,b)=>b.months>a.months?b:a);
+  const longest=PROJECTS.reduce((a,b)=>b.months>a.months?b:a);
   const lm=fmtMonths(longest.months).replace('년','<small>년</small>').replace('개월','<small>개월</small>');
   document.getElementById('kpis').innerHTML=[
     {v:`${PROJECTS.length}<small>개</small>`, l:'입사 후 맡은 프로젝트'},
-    {v:`${(conc.reduce((a,c)=>a+c.n,0)/conc.length).toFixed(1)}<small>개</small>`, l:'한 달 평균 함께 진행한 프로젝트'},
-    {v:`${pk.n}<small>개</small>`, l:`가장 바빴던 달 동시 진행 (${fmtD(pk.m)})`},
     {v:lm, l:`가장 긴 프로젝트 · ${longest.short}`},
   ].map(s=>`<div class="tile"><span class="v">${s.v}</span><span class="l">${s.l}</span></div>`).join('');
 
@@ -1065,7 +1032,7 @@ function renderStats(){
   { const el=document.getElementById('waffle'), G=6, L=112, CS=Math.min(40,Math.floor((chartW(el)-L-8)/5)-G), rows=TYPES.map(t=>({t,ps:PROJECTS.filter(p=>p.type===t.id)})), W=L+5*(CS+G)+40, H=rows.length*(CS+20)+4;
     let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px" role="img" aria-label="${rows.map(r=>r.t.short+' '+r.ps.length+'개').join(', ')}">`;
     rows.forEach((r,i)=>{ const y=i*(CS+20); s+=`<text class="lbl" x="0" y="${y+CS/2}">${r.t.name}</text><text class="lbl2" x="0" y="${y+CS/2+17}">${r.t.short} ${r.ps.length}개</text>`;
-      r.ps.forEach((p,j)=>{ const x=L+j*(CS+G), c=catOf(p.cat); s+=`<rect x="${x}" y="${y}" width="${CS}" height="${CS}" rx="5" fill="${c.hex}"/><text x="${x+CS/2}" y="${y+CS/2+4}" text-anchor="middle" style="font-family:var(--en);font-weight:600;font-size:12px;fill:#111">${p.no}</text><rect class="hit" x="${x-2}" y="${y-2}" width="${CS+4}" height="${CS+4}" data-id="${p.id}" data-tip="${esc(tipProject(p))}"/>`; }); });
+      r.ps.forEach((p,j)=>{ const x=L+j*(CS+G), c=catOf(p.cat); s+=`<rect x="${x}" y="${y}" width="${CS}" height="${CS}" rx="5" fill="${c.hex}"/><text x="${x+CS/2}" y="${y+CS/2+4}" text-anchor="middle" style="font-family:var(--en);font-weight:600;font-size:12px;fill:${c.on}">${p.no}</text><rect class="hit" x="${x-2}" y="${y-2}" width="${CS+4}" height="${CS+4}" data-id="${p.id}" data-tip="${esc(tipProject(p))}"/>`; }); });
     el.innerHTML=`<div class="chips" style="margin-bottom:14px">${CATS.map(c=>`<span class="chip static" style="--c:${c.hex}"><span class="sw"></span>${c.name}</span>`).join('')}</div>`+s+'</svg>'; bindTips(el);
     el.querySelectorAll('[data-id]').forEach(h=>h.addEventListener('click',()=>{hideTip(); go('all/'+h.dataset.id);}));
     document.getElementById('typeTable').innerHTML=`<table class="data-table"><thead><tr><th>유형</th><th class="num">수</th><th>프로젝트</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r.t.short}</td><td class="num">${r.ps.length}</td><td>${r.ps.map(p=>esc(p.short)).join(', ')}</td></tr>`).join('')}</tbody></table>`; }
@@ -1139,7 +1106,7 @@ addEventListener('scroll',hideTip,{passive:true});
 let rzT,lastW=innerWidth; addEventListener('resize',()=>{ clearTimeout(rzT); rzT=setTimeout(()=>{ if(Math.abs(innerWidth-lastW)>20){ lastW=innerWidth; if(document.getElementById('stats').classList.contains('on')) renderStats(); } },150); });
 
 const T=tenure(); document.getElementById('tenureHero').textContent=`${T.y}년 ${T.m}개월`; document.getElementById('tenureInline').textContent=`· ${T.y}년 ${T.m}개월째`;
-buildFilters(); renderRows(); renderProfile(); makeChips(document.getElementById('mapChips'),mapState,()=>{renderGantt();renderConc();}); renderGantt(); renderConc(); renderStyle();
+buildFilters(); renderRows(); renderProfile(); makeChips(document.getElementById('mapChips'),mapState,renderGantt); renderGantt(); renderStyle();
 loadPhotos(document); route();
 </script>
 </body>
