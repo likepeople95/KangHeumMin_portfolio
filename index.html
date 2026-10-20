@@ -105,11 +105,18 @@ section.panel.on{display:block}
 
 /* ---------- 상세(공고 상세형) ---------- */
 .detail{--d-ink:#111213;--d-ink-2:#36363d;--d-body:#62626a;--d-mute:#797981;--d-meta:#919197;--d-sep:#c3c3c5;--d-line:#e6e6e8;--d-soft:#f8f8f8;
-  display:grid;grid-template-columns:282px minmax(0,1fr);gap:112px;align-items:start;letter-spacing:normal;color:var(--d-ink)}
+  display:grid;grid-template-columns:296px minmax(0,1fr);gap:98px;align-items:start;letter-spacing:normal;color:var(--d-ink)}
 .detail .back{display:inline-flex;align-items:center;gap:8px;font-size:18px;font-weight:700;line-height:27px;color:var(--d-ink)}
 .back-m{display:none!important}
-.d-count{margin-top:120px;height:40px;font-size:16px;font-weight:700;line-height:24px}
-.d-cards{display:flex;flex-direction:column;gap:12px}
+/* 왼쪽 목록: 페이지를 내려도 머리글 아래에 고정되고, 목록 안에서만 따로 스크롤된다 */
+.d-side{align-self:stretch}
+.d-stick{position:sticky;top:96px;margin-top:120px;display:flex;flex-direction:column;max-height:min(960px,calc(100vh - 120px))}
+.d-count{flex:none;height:40px;font-size:16px;font-weight:700;line-height:24px}
+.d-cards{display:flex;flex-direction:column;gap:12px;min-height:0;overflow-y:auto;overflow-x:hidden;padding-right:14px}
+.d-cards::-webkit-scrollbar{width:7px}
+.d-cards::-webkit-scrollbar-thumb{background:#e9e9e9;border-radius:10px}
+.d-cards::-webkit-scrollbar-track{background:transparent}
+@supports not selector(::-webkit-scrollbar){ .d-cards{scrollbar-width:thin;scrollbar-color:#e9e9e9 transparent} }
 .d-card{display:block;border:1px solid var(--d-line);border-radius:14px;padding:16px 20px;background:#fff;transition:border-color .15s}
 .d-card:hover{border-color:var(--d-sep)}
 .d-card[aria-current="page"]{border-color:var(--d-body)}
@@ -297,8 +304,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .d-side{order:2}
   .d-side .back{display:none}
   .back-m{display:inline-flex!important;margin-bottom:32px}
-  .d-count{margin-top:0}
-  .d-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+  .d-stick{position:static;margin-top:0;max-height:none}
+  .d-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));overflow:visible;padding-right:0}
   .tiles{grid-template-columns:repeat(3,1fr)}
   .tile:nth-child(4){border-left:0;padding-left:0}
   .tiles .tile{border-bottom:1px solid var(--line)}
@@ -863,12 +870,15 @@ function renderDetail(id){
   const cards = card(ROUTINE.id, ROUTINE.short, ['전 영역', `${fmtD(ROUTINE_START)} – 상시`])
     + [...PROJECTS].reverse().map(q=>card(q.id, q.short, [catOf(q.cat).name, period(q)])).join('');
   const el=document.getElementById('detailView');
+  const prevList=el.querySelector('.d-cards'), listTop=prevList?prevList.scrollTop:0;
   el.innerHTML=`
    <div class="detail">
     <aside class="d-side">
       <a class="back" href="#all">${ICON_BACK}돌아가기</a>
-      <div class="d-count">프로젝트 총 ${PROJECTS.length}건 <span>+ 상시 1건</span></div>
-      <nav class="d-cards" aria-label="전체 프로젝트">${cards}</nav>
+      <div class="d-stick">
+        <div class="d-count">프로젝트 총 ${PROJECTS.length}건 <span>+ 상시 1건</span></div>
+        <nav class="d-cards" aria-label="전체 프로젝트">${cards}</nav>
+      </div>
     </aside>
     <article>
       <a class="back back-m" href="#all">${ICON_BACK}돌아가기</a>
@@ -888,6 +898,11 @@ function renderDetail(id){
     </article>
    </div>`;
   el.querySelectorAll('[data-share]').forEach(b=>b.onclick=()=>copyLink(b.dataset.share));
+  // 목록 스크롤 위치는 유지하고, 지금 프로젝트 카드가 목록 밖에 있으면 보이게 맞춘다
+  const list=el.querySelector('.d-cards'), cur=list.querySelector('[aria-current]');
+  list.scrollTop=listTop;
+  if(cur && list.scrollHeight>list.clientHeight){ const lr=list.getBoundingClientRect(), cr=cur.getBoundingClientRect();
+    if(cr.top<lr.top || cr.bottom>lr.bottom) list.scrollTop += cr.top-lr.top-8; }
   loadPhotos(el);
 }
 
