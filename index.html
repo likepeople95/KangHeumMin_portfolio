@@ -17,7 +17,6 @@
   --bg:#ffffff; --soft:#f6f6f7; --soft-2:#efeff1; --line:#e5e5e8; --grid:#eeeef0;
   --ink:#111111; --ink-2:#555559; --ink-3:#8e8e93; --ink-4:#b4b4b9;
   --c-policy:#1c1c1e; --c-comp:#4a4a4f; --c-labor:#7a7a80; --c-recruit:#a8a8ae; --c-ai:#d2d2d7; --c-ops:#ffffff;
-  --seq-1:#e9e9ec; --seq-2:#d2d2d7; --seq-3:#7a7a80; --seq-4:#2c2c2e;
   --en:'Poppins','Pretendard',sans-serif;
   --ko:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;
   color-scheme:light;
@@ -56,7 +55,7 @@ header.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);bac
 .hero h1{font-family:var(--en);font-weight:700;font-size:clamp(34px,4.6vw,52px);line-height:1.15;letter-spacing:-1.2px}
 .hero .who{margin-top:14px;color:var(--ink-2);font-size:16px}
 .hero .who b{color:var(--ink);font-weight:700}
-/* 메뉴 페이지(Profile·Career·Stats·Play Style) 머리 */
+/* 메뉴 페이지(Profile·Career·Play Style) 머리 */
 .page-head{padding:104px 0 0}
 .page-head h1{font-family:var(--en);font-weight:700;font-size:clamp(34px,4.6vw,52px);line-height:1.15;letter-spacing:-1.2px}
 .page-head p{margin-top:14px;color:var(--ink-2);font-size:16px}
@@ -246,7 +245,6 @@ button.tile:hover{background:var(--soft)}
 .chart h3{font-size:18px;font-weight:700;letter-spacing:-.3px}
 .chart .sub{font-size:13px;color:var(--ink-3);margin-top:2px}
 .chart-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:16px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .stack{display:flex;flex-direction:column;gap:20px}
 .scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .wide{min-width:760px}
@@ -272,21 +270,6 @@ svg text{font-family:var(--ko)}
 .tbl{display:none}
 .show-table .tbl{display:block}
 .show-table .viz{display:none}
-.kpis{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:20px}
-.kpis .tile:first-child{padding-left:0}
-.matrix{display:grid;grid-template-columns:140px 1fr 1fr;gap:4px;font-size:14px}
-.matrix .mh{font-size:13px;color:var(--ink-3);padding:6px 10px}
-.matrix .rh{font-weight:700;padding:12px 4px;display:flex;align-items:center}
-.matrix .cell{border-radius:8px;padding:10px 12px;display:flex;flex-wrap:wrap;gap:6px;align-content:center;min-height:50px}
-.matrix .c0{background:var(--soft);color:var(--ink-4)}
-.matrix .c1{background:var(--seq-1)}.matrix .c2{background:var(--seq-2)}
-.matrix .c3{background:var(--seq-3);color:#fff}.matrix .c4{background:var(--seq-4);color:#fff}
-.matrix .it{font-size:13px;padding:2px 8px;border-radius:5px;background:rgba(255,255,255,.6);color:var(--ink)}
-.matrix .c3 .it,.matrix .c4 .it{background:rgba(0,0,0,.18);color:#fff}
-.matrix button.it{text-decoration:underline;text-underline-offset:3px;cursor:pointer}
-.seq-legend{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--ink-3);flex:none}
-.seq-legend i{width:20px;height:10px;border-radius:2px;display:inline-block}
-.src{font-size:12px;color:var(--ink-3);margin-top:10px}
 #tip{position:fixed;z-index:100;pointer-events:none;background:var(--ink);color:#fff;border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.5;max-width:280px;opacity:0;transition:opacity .12s}
 #tip.on{opacity:1}
 #tip .tt{font-weight:700;font-size:14px;margin-bottom:2px}
@@ -297,19 +280,15 @@ svg text{font-family:var(--ko)}
 .quotes{display:flex;flex-direction:column;border-top:2px solid var(--ink)}
 .quote{display:grid;grid-template-columns:80px 1fr 1.1fr;gap:28px;padding:40px 0;border-bottom:1px solid var(--line);align-items:start}
 .quote .no{font-family:var(--en);font-weight:600;font-size:15px;color:var(--ink-3)}
-.quote blockquote{font-size:26px;font-weight:700;line-height:1.35;letter-spacing:-.6px}
-.quote .k{font-family:var(--en);font-size:13px;font-weight:600;letter-spacing:1px;color:var(--ink-3);text-transform:uppercase}
-.quote h4{font-size:18px;font-weight:700;margin:4px 0 8px}
+.quote .vname{display:flex;flex-direction:column;gap:6px}
+.quote .vname b{font-family:var(--en);font-size:28px;font-weight:700;line-height:1.2;letter-spacing:-.6px}
+.quote .vname span{font-size:15px;font-weight:600;color:var(--ink-3)}
 .quote p{color:var(--ink-2)}
 .quests{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
 .quest{padding:26px 24px 26px 0;border-bottom:1px solid var(--line)}
 .quest .no{font-family:var(--en);font-weight:600;font-size:13px;color:var(--ink-3)}
 .quest h4{font-size:19px;font-weight:700;margin:2px 0 8px}
 .quest ul{list-style:none;color:var(--ink-2);font-size:15px;display:flex;flex-direction:column;gap:3px}
-.closing{margin-top:96px;padding:72px 0;border-top:1px solid var(--line);text-align:left}
-.closing h3{font-family:var(--en);font-size:clamp(30px,4vw,46px);font-weight:700;letter-spacing:-1px;line-height:1.15}
-.closing p{color:var(--ink-2);margin-top:12px;font-size:17px}
-.closing .btn{display:inline-flex;margin-top:28px;padding:0 26px}
 footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--ink-3);font-size:13px}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 /* 연락처 팝업 */
@@ -337,7 +316,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .tiles{grid-template-columns:repeat(3,1fr)}
   .tile:nth-child(4){border-left:0;padding-left:0}
   .tiles .tile{border-bottom:1px solid var(--line)}
-  .grid2{grid-template-columns:1fr}
   .cols3{grid-template-columns:1fr 1fr}
 }
 @media (max-width:760px){
@@ -364,9 +342,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .tiles{grid-template-columns:1fr 1fr}
   .tiles .tile{border-left:0!important;padding-left:0!important}
   .tiles .tile:nth-child(even){padding-left:16px!important;border-left:1px solid var(--line)!important}
-  .kpis{grid-template-columns:1fr 1fr}
-  .kpis .tile{border-left:0!important;padding-left:0!important;border-bottom:1px solid var(--line)}
-  .kpis .tile:nth-child(even){padding-left:16px!important;border-left:1px solid var(--line)!important}
   .cols3{grid-template-columns:1fr}
   .steps li{grid-template-columns:34px 1fr;}
   .steps li span{grid-column:2}
@@ -378,9 +353,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .d-banner{margin-top:40px}
   .d-bottom{margin-top:56px}
   .quote{grid-template-columns:1fr;gap:10px;padding:30px 0}
-  .quote blockquote{font-size:22px}
+  .quote .vname b{font-size:24px}
   .quests{grid-template-columns:1fr}
-  .matrix{grid-template-columns:86px 1fr 1fr;font-size:13px}
   .wide{min-width:940px}
   .swipe{display:block}
   .chart{padding:20px 16px 16px}
@@ -400,7 +374,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </nav>
     <div class="util">
       <a class="opt" href="#profile">프로필</a>
-      <a class="opt" href="#stats">숫자로 보기</a>
       <button type="button" data-contact>연락하기</button>
     </div>
     <button class="mbtn" id="mbtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mnav"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg></button>
@@ -410,7 +383,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <a href="#career">커리어 여정</a>
     <a href="#style">일하는 방식</a>
     <a href="#profile">프로필</a>
-    <a href="#stats">숫자로 보기</a>
   </nav>
 </header>
 
@@ -528,92 +500,28 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </div>
   </section>
 
-  <!-- ===================== Stats ===================== -->
-  <section class="panel" id="stats" role="tabpanel" aria-labelledby="t-stats">
-    <div class="block-head" style="margin-bottom:28px">
-      <div><h2 class="sec-title ko">숫자로 보는 <span id="tenureTitle"></span></h2>
-      <p class="sec-sub">아래 숫자는 모두 프로젝트 기간과 지원서에 적은 인원을 바탕으로 이 페이지가 직접 계산해요.</p></div>
-    </div>
-    <div class="kpis" id="kpis"></div>
-    <div class="stack">
-      <div class="grid2">
-        <div class="chart" id="catCard">
-          <div class="chart-head"><div><h3>영역별 프로젝트 수</h3><p class="sub">10개 프로젝트를 다섯 영역으로 나눴어요</p></div><button class="btn sm" data-toggle="catCard">표로 보기</button></div>
-          <div class="viz" id="catCount"></div><div class="tbl" id="catTable"></div>
-        </div>
-        <div class="chart" id="monCard">
-          <div class="chart-head"><div><h3>영역별 누적 진행 기간</h3><p class="sub">프로젝트 기간을 개월 수로 더했어요</p></div><button class="btn sm" data-toggle="monCard">표로 보기</button></div>
-          <div class="viz" id="catMonths"></div><div class="tbl" id="monTable"></div>
-        </div>
-      </div>
-      <div class="grid2">
-        <div class="chart" id="yearCard">
-          <div class="chart-head"><div><h3>해마다 쏟은 프로젝트 시간</h3><p class="sub">연도별 진행 개월 수를 영역별로 쌓았어요</p></div><button class="btn sm" data-toggle="yearCard">표로 보기</button></div>
-          <div class="chips" id="yearLegend" style="margin-bottom:6px"></div>
-          <div class="viz" id="yearChart"></div><div class="tbl" id="yearTable"></div>
-        </div>
-        <div class="chart" id="typeCard">
-          <div class="chart-head"><div><h3>새로 만들었나, 고쳤나, 운영했나</h3><p class="sub">칸 하나가 프로젝트 하나 · 색은 영역 · 숫자는 프로젝트 번호</p></div><button class="btn sm" data-toggle="typeCard">표로 보기</button></div>
-          <div class="viz" id="waffle"></div><div class="tbl" id="typeTable"></div>
-        </div>
-      </div>
-      <div class="grid2">
-        <div class="chart" id="recCard">
-          <div class="chart-head"><div><h3>채용설명회에서 만난 지원자</h3><p class="sub">회차별 참가자 수 · 2026년은 대략적인 인원</p></div><button class="btn sm" data-toggle="recCard">표로 보기</button></div>
-          <div class="viz" id="recChart"></div><div class="tbl" id="recTable"></div>
-        </div>
-        <div class="chart">
-          <div class="chart-head"><div><h3>이 숫자들을 읽는 법</h3><p class="sub">계산 기준</p></div></div>
-          <ul class="dots" style="list-style:none;display:flex;flex-direction:column;gap:12px;color:var(--ink-2);font-size:15px">
-            <li>· 기간은 지원서에 적은 시작일과 종료일 기준이에요. 진행 중인 일은 오늘까지로 계산해요.</li>
-            <li>· 개월 수는 일수를 평균 한 달(30.44일)로 나눠 반올림했어요.</li>
-            <li>· 수당 금액, 복지포인트 금액처럼 회사 내부 정보인 숫자는 넣지 않았어요.</li>
-            <li>· 막대와 칸에 마우스를 올리면 자세한 숫자가 보여요. 숫자만 보려면 ‘표로 보기’를 누르세요.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="chart">
-        <div class="chart-head">
-          <div><h3>HRM 커버리지 맵</h3><p class="sub">인사 업무 영역별로, 매일 운영하는 업무와 직접 만들거나 고친 제도를 나눠 봤어요 · 진할수록 항목이 많아요</p></div>
-          <div class="seq-legend" aria-hidden="true">적음 <i style="background:var(--seq-1)"></i><i style="background:var(--seq-2)"></i><i style="background:var(--seq-3)"></i><i style="background:var(--seq-4)"></i> 많음</div>
-        </div>
-        <div class="matrix" id="matrix" role="table" aria-label="HRM 커버리지 맵"></div>
-        <p class="src">밑줄 친 항목을 누르면 해당 프로젝트로 이동해요.</p>
-      </div>
-    </div>
-  </section>
-
   <!-- ===================== Play Style ===================== -->
   <section class="panel" id="style" role="tabpanel" aria-labelledby="t-style">
-    <div class="block-head" style="margin-bottom:28px">
-      <div><h2 class="sec-title ko">회사생활 중 들은 세 마디</h2>
-      <p class="sec-sub">이 세 마디가 제가 일하는 방식을 설명합니다.</p></div>
-    </div>
     <div class="quotes">
       <div class="quote">
         <span class="no">01</span>
-        <blockquote>“신입사원으로서 가장 중요한 자세는 무엇인가요?”</blockquote>
-        <div><p class="k">Passive · 애사심</p><h4>조직을 아끼는 마음</h4><p>면접관으로 앉은 자리에서 지원자의 질문에 “애사심”이라고 답했습니다. 제도를 고민하는 깊이는 조직을 아끼는 마음에서 나온다고 믿습니다.</p></div>
+        <div class="vname"><b>Loyalty</b><span>애사심</span></div>
+        <p>인사 업무는 회사와 구성원을 함께 돌보는 일입니다. 조직을 아끼는 마음이 있어야 제도 하나, 숫자 하나도 끝까지 고민하게 된다고 생각합니다.</p>
       </div>
       <div class="quote">
         <span class="no">02</span>
-        <blockquote>“휴가 중에는 카톡 하지 마”</blockquote>
-        <div><p class="k">Active · 콜필리아</p><h4>연락을 망설이지 않기</h4><p>콜포비아의 반대말입니다. 365일 돌아가는 언론사에서 구성원과 언제든 편하게 소통하며 쌓은 관계가 업무 요청과 사실관계 파악의 무기가 됐습니다.</p></div>
+        <div class="vname"><b>Active Communication</b><span>적극적인 소통</span></div>
+        <p>필요한 일은 먼저 묻고, 먼저 알립니다. 구성원과 편하게 이야기할 수 있는 관계가 있어야 제도도 현장에 맞게 만들고 운영할 수 있습니다.</p>
       </div>
       <div class="quote">
         <span class="no">03</span>
-        <blockquote>“이걸 하나하나 다 보고 있었어?”</blockquote>
-        <div><p class="k">Ultimate · 연필</p><h4>마지막 확인은 두 눈으로</h4><p>엑셀 함수, AI 검증, 크로스체크를 거쳐도 최종 확정 전에는 출력해서 직접 봅니다. 디지털로 빠르게 만들고, 아날로그로 꼼꼼하게 검증합니다.</p></div>
+        <div class="vname"><b>Attention to Detail</b><span>꼼꼼함</span></div>
+        <p>인사 업무의 숫자 하나는 구성원 한 사람의 급여와 휴가로 이어집니다. 그래서 작은 숫자와 문구까지 한 번 더 확인합니다.</p>
       </div>
     </div>
     <div class="block">
       <div class="block-head"><div><h3>매일 하는 기본 업무</h3><p>새 제도는 이 기본 업무를 정확하게 해낼 때 만들 수 있다고 생각합니다.</p></div></div>
       <div class="quests" id="quests"></div>
-    </div>
-    <div class="closing">
-      <h3>Waiting for the 4th Word</h3>
-      <p>세 마디 다음, 네 번째 한마디를 기다립니다.</p>
-      <button type="button" class="btn dark" data-contact>rkdgmaals@naver.com</button>
     </div>
   </section>
 </main>
@@ -740,7 +648,7 @@ const DAILY = [
 ];
 
 /* ALL 목록 맨 위에 고정되는 상시 업무(일상업무). 필터와 상관없이 항상 보이고,
-   영역 필터를 걸면 그 영역의 업무가 '관련 업무'로 함께 보인다. 프로젝트 개수·Stats 차트에는 넣지 않는다.
+   영역 필터를 걸면 그 영역의 업무가 '관련 업무'로 함께 보인다. 프로젝트 차트에는 넣지 않는다.
    cat: 연결할 영역(CATS의 id) · k: 목록에 보이는 짧은 이름 · t: 상세 페이지 문구 */
 const ROUTINE = {
   id:'routine', short:'HRM 일상업무 (상시)', start:JOIN_DATE,
@@ -763,18 +671,6 @@ const ROUTINE = {
     {cat:'recruit', k:'채용업무 전반',             t:'채용업무 전반(수습사원 공채, 계약직, 경력스카우트)'},
   ]};
 
-const COVERAGE = [
-  ['채용',         ['채용 업무'],                                   [['채용설명회 3회','recruit']]],
-  ['근태',         ['휴가·휴직','출장·휴일·초과근무'],               [['근태관리 프로그램','shiftee'],['금쪽사랑휴가','geumjjok']]],
-  ['평가',         ['정기평가 보조','다면평가','수습·정규직 전환'],   []],
-  ['보상',         ['휴일·초과근무수당','미사용연차보상','연말정산'], [['특별업무 추가수당','allowance'],['통상임금 개편','wage']]],
-  ['복리후생·여비', ['복지포인트 운영'],                             [['복지포인트 도입','welfare'],['학자금 기준','tuition'],['출장여비 사규','travel']]],
-  ['노사·노무',    [],                                              [['노사합의 폐지','shiftee'],['판례 대응','wage']]],
-  ['인사 운영',    ['인사위원회','표창심의위원회','계열사 간 전적','인력지원비'], []],
-  ['정년·재고용',  [],                                              [['정년 후 재고용','reemploy']]],
-  ['학습·조직문화', [],                                             [['AI 학습조직','peoplexity']]],
-];
-
 /* =========================================================
    계산 도우미
    ========================================================= */
@@ -789,7 +685,6 @@ const fmtD = d => `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}`
 const fmtDD = d => `${fmtD(d)}.${String(d.getDate()).padStart(2,'0')}`;
 const fmtMonths = m => { const r=Math.max(1,Math.round(m)); return r>=12?`${Math.floor(r/12)}년${r%12?' '+(r%12)+'개월':''}`:`${r}개월`; };
 function tenure(){ const s=D(JOIN_DATE); let m=(TODAY.getFullYear()-s.getFullYear())*12+(TODAY.getMonth()-s.getMonth()); if(TODAY.getDate()<s.getDate()) m--; return {y:Math.floor(m/12), m:m%12, total:m}; }
-const overlapDays=(a1,a2,b1,b2)=>Math.max(0,(Math.min(a2,b2)-Math.max(a1,b1))/DAY);
 const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const ICON_SHARE = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 13v6h14v-6" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 const ICON_ARROW = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -940,7 +835,7 @@ function renderProfile(){
   const items=[
     {v:`${t.y}<small>년</small> ${t.m}<small>개월</small>`, l:'인사팀 HRM 실무', go:'career'},
     {v:`600<small>명</small>`, l:'근태·평가·보상 운영 규모 (약)', go:'style'},
-    {v:`${sys}<small>건</small>`, l:'직접 신설·개편한 인사제도', go:'stats'},
+    {v:`${sys}<small>건</small>`, l:'직접 신설·개편한 인사제도', go:'all'},
     {v:`${Math.floor(rec/10)*10}<small>명+</small>`, l:'채용설명회에서 만난 지원자', go:'all/recruit'},
     {v:`20<small>명</small>`, l:'함께 배우는 AI 학습조직', go:'all/peoplexity'},
   ];
@@ -987,70 +882,6 @@ function renderGantt(){
 }
 
 /* =========================================================
-   Stats
-   ========================================================= */
-const rBarH=(x,y,w,h,r=4)=>{ if(w<=0) return ''; r=Math.min(r,w,h/2); return `M${x} ${y} H${x+w-r} Q${x+w} ${y} ${x+w} ${y+r} V${y+h-r} Q${x+w} ${y+h} ${x+w-r} ${y+h} H${x} Z`; };
-const rBarV=(x,y,w,h,r=4)=>{ if(h<=0) return ''; r=Math.min(r,h,w/2); return `M${x} ${y+h} V${y+r} Q${x} ${y} ${x+r} ${y} H${x+w-r} Q${x+w} ${y} ${x+w} ${y+r} V${y+h} Z`; };
-const chartW=el=>{ const w=el.clientWidth||(el.closest('.chart').clientWidth-52); return Math.max(280,Math.min(680,w)); };
-function hbar(id,rows,unit){
-  const el=document.getElementById(id), W=chartW(el), L=88, R=60, RH=40, BH=18, H=rows.length*RH+6, max=Math.max(...rows.map(r=>r.v)), nice=max<=5?5:Math.ceil(max/10)*10, xs=v=>L+(v/nice)*(W-L-R);
-  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${rows.map(r=>r.name+' '+r.v+unit).join(', ')}"><line x1="${L}" x2="${L}" y1="0" y2="${H-6}" stroke="var(--line)"/>`;
-  rows.forEach((r,i)=>{ const y=i*RH+(RH-BH)/2, w=xs(r.v)-L;
-    s+=`<text class="lbl" x="0" y="${y+BH/2+5}">${r.name}</text><path d="${rBarH(L,y,w,BH)}" fill="${r.hex}"/><text class="val" x="${L+w+8}" y="${y+BH/2+4}">${r.v}${unit}</text>`;
-    s+=`<rect class="hit" x="0" y="${i*RH}" width="${W}" height="${RH}" data-tip="${esc(`<div class='tt'>${r.name}</div><div class='r'><span class='sw' style='background:${r.hex}'></span>${r.v}${unit}</div><div class='r'>${esc(r.list)}</div>`)}"/>`; });
-  el.innerHTML=s+'</svg>'; bindTips(el);
-}
-function renderStats(){
-  const t=tenure();
-  document.getElementById('tenureTitle').textContent=`${t.y}년 ${t.m}개월`;
-  const longest=PROJECTS.reduce((a,b)=>b.months>a.months?b:a);
-  const lm=fmtMonths(longest.months).replace('년','<small>년</small>').replace('개월','<small>개월</small>');
-  document.getElementById('kpis').innerHTML=[
-    {v:`${PROJECTS.length}<small>개</small>`, l:'입사 후 맡은 프로젝트'},
-    {v:lm, l:`가장 긴 프로젝트 · ${longest.short}`},
-  ].map(s=>`<div class="tile"><span class="v">${s.v}</span><span class="l">${s.l}</span></div>`).join('');
-
-  const cr=CATS.map(c=>{ const ps=PROJECTS.filter(p=>p.cat===c.id); return {name:c.name,hex:c.hex,n:ps.length,m:ps.reduce((a,p)=>a+p.months,0),list:ps.map(p=>p.short).join(', ')}; });
-  hbar('catCount',cr.map(r=>({...r,v:r.n})),'개'); hbar('catMonths',cr.map(r=>({...r,v:Math.round(r.m)})),'개월');
-  document.getElementById('catTable').innerHTML=`<table class="data-table"><thead><tr><th>영역</th><th class="num">수</th><th>프로젝트</th></tr></thead><tbody>${cr.map(r=>`<tr><td>${r.name}</td><td class="num">${r.n}</td><td>${esc(r.list)}</td></tr>`).join('')}</tbody></table>`;
-  document.getElementById('monTable').innerHTML=`<table class="data-table"><thead><tr><th>영역</th><th class="num">누적 개월</th></tr></thead><tbody>${cr.map(r=>`<tr><td>${r.name}</td><td class="num">${r.m.toFixed(1)}</td></tr>`).join('')}</tbody></table>`;
-
-  makeChips(document.getElementById('yearLegend'),new Set(),()=>{},true);
-  const ym=YEARS.map(y=>{ const a=new Date(y+'-01-01T00:00:00'), b=y===TODAY.getFullYear()?TODAY:new Date((y+1)+'-01-01T00:00:00');
-    const seg=CATS.map(c=>({c,v:PROJECTS.filter(p=>p.cat===c.id).reduce((s,p)=>s+overlapDays(p.s,p.e,a,b)/MON,0)})); return {y,seg,tot:seg.reduce((s,x)=>s+x.v,0)}; });
-  { const el=document.getElementById('yearChart'), W=chartW(el), H=270, L=34, R=10, top=24, bot=30, ih=H-top-bot, max=Math.ceil(Math.max(...ym.map(d=>d.tot))/10)*10, yy=v=>top+ih-(v/max)*ih, band=(W-L-R)/YEARS.length, BW=24;
-    let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="연도별 진행 개월 수: ${ym.map(d=>d.y+'년 '+Math.round(d.tot)+'개월').join(', ')}">`;
-    for(let v=0;v<=max;v+=10) s+=`<line x1="${L}" x2="${W-R}" y1="${yy(v)}" y2="${yy(v)}" stroke="var(--grid)"/><text class="ax" x="${L-8}" y="${yy(v)+4}" text-anchor="end">${v}</text>`;
-    ym.forEach((d,i)=>{ const cx=L+band*i+band/2, x=cx-BW/2; let acc=0; const segs=d.seg.filter(g=>g.v>.05);
-      segs.forEach((g,j)=>{ const y0=yy(acc), y1=yy(acc+g.v), last=j===segs.length-1;
-        s+= last?`<path d="${rBarV(x,y1,BW,Math.max(1,y0-y1))}" fill="${g.c.hex}"/>`:`<rect x="${x}" y="${y1+2}" width="${BW}" height="${Math.max(1,y0-y1-2)}" fill="${g.c.hex}"/>`; acc+=g.v; });
-      s+=`<text class="val" x="${cx}" y="${yy(d.tot)-8}" text-anchor="middle">${Math.round(d.tot)}</text><text class="ax" x="${cx}" y="${H-10}" text-anchor="middle">${d.y}${d.y===TODAY.getFullYear()?'*':''}</text>`;
-      s+=`<rect class="hit" x="${L+band*i}" y="${top}" width="${band}" height="${ih}" data-tip="${esc(`<div class='tt'>${d.y}년 · ${Math.round(d.tot)}개월</div>`+segs.slice().reverse().map(g=>`<div class='r'><span class='sw' style='background:${g.c.hex}'></span>${g.c.name} ${g.v.toFixed(1)}개월</div>`).join(''))}"/>`; });
-    el.innerHTML=s+`</svg><p class="src">* ${TODAY.getFullYear()}년은 오늘까지 · 영역별 기간의 합이라 한 해 12개월을 넘을 수 있어요</p>`; bindTips(el); }
-  document.getElementById('yearTable').innerHTML=`<table class="data-table"><thead><tr><th>연도</th>${CATS.map(c=>`<th class="num">${c.name}</th>`).join('')}<th class="num">합계</th></tr></thead><tbody>${ym.map(d=>`<tr><td>${d.y}</td>${d.seg.map(g=>`<td class="num">${g.v.toFixed(1)}</td>`).join('')}<td class="num">${d.tot.toFixed(1)}</td></tr>`).join('')}</tbody></table>`;
-
-  { const el=document.getElementById('waffle'), G=6, L=112, CS=Math.min(40,Math.floor((chartW(el)-L-8)/5)-G), rows=TYPES.map(t=>({t,ps:PROJECTS.filter(p=>p.type===t.id)})), W=L+5*(CS+G)+40, H=rows.length*(CS+20)+4;
-    let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:${W}px" role="img" aria-label="${rows.map(r=>r.t.short+' '+r.ps.length+'개').join(', ')}">`;
-    rows.forEach((r,i)=>{ const y=i*(CS+20); s+=`<text class="lbl" x="0" y="${y+CS/2}">${r.t.name}</text><text class="lbl2" x="0" y="${y+CS/2+17}">${r.t.short} ${r.ps.length}개</text>`;
-      r.ps.forEach((p,j)=>{ const x=L+j*(CS+G), c=catOf(p.cat); s+=`<rect x="${x}" y="${y}" width="${CS}" height="${CS}" rx="5" fill="${c.hex}"/><text x="${x+CS/2}" y="${y+CS/2+4}" text-anchor="middle" style="font-family:var(--en);font-weight:600;font-size:12px;fill:${c.on}">${p.no}</text><rect class="hit" x="${x-2}" y="${y-2}" width="${CS+4}" height="${CS+4}" data-id="${p.id}" data-tip="${esc(tipProject(p))}"/>`; }); });
-    el.innerHTML=`<div class="chips" style="margin-bottom:14px">${CATS.map(c=>`<span class="chip static" style="--c:${c.hex}"><span class="sw"></span>${c.name}</span>`).join('')}</div>`+s+'</svg>'; bindTips(el);
-    el.querySelectorAll('[data-id]').forEach(h=>h.addEventListener('click',()=>{hideTip(); go('all/'+h.dataset.id);}));
-    document.getElementById('typeTable').innerHTML=`<table class="data-table"><thead><tr><th>유형</th><th class="num">수</th><th>프로젝트</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r.t.short}</td><td class="num">${r.ps.length}</td><td>${r.ps.map(p=>esc(p.short)).join(', ')}</td></tr>`).join('')}</tbody></table>`; }
-
-  { const ev=PROJECTS.find(p=>p.id==='recruit').events, hex=catOf('recruit').hex, el=document.getElementById('recChart'), W=chartW(el), H=240, L=34, R=10, top=26, bot=44, ih=H-top-bot, max=120, yy=v=>top+ih-(v/max)*ih, band=(W-L-R)/ev.length, BW=24;
-    let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${ev.map(e=>e.t+' '+(e.approx?'약 ':'')+e.n+'명').join(', ')}"><defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="${hex}" opacity=".3"/><line x1="0" y1="0" x2="0" y2="6" stroke="${hex}" stroke-width="3"/></pattern></defs>`;
-    for(let v=0;v<=max;v+=40) s+=`<line x1="${L}" x2="${W-R}" y1="${yy(v)}" y2="${yy(v)}" stroke="var(--grid)"/><text class="ax" x="${L-8}" y="${yy(v)+4}" text-anchor="end">${v}</text>`;
-    ev.forEach((e,i)=>{ const cx=L+band*i+band/2; s+=`<path d="${rBarV(cx-BW/2,yy(e.n),BW,yy(0)-yy(e.n))}" fill="${e.approx?'url(#hatch)':hex}"/><text class="val" x="${cx}" y="${yy(e.n)-8}" text-anchor="middle">${e.approx?'약 ':''}${e.n}명</text><text class="ax" x="${cx}" y="${H-24}" text-anchor="middle">${e.year}</text><text class="ax" x="${cx}" y="${H-8}" text-anchor="middle" style="font-size:11px">${e.year===2026?'기자 지망생':'캐치카페'}</text>`;
-      s+=`<rect class="hit" x="${L+band*i}" y="${top}" width="${band}" height="${ih}" data-tip="${esc(`<div class='tt'>${e.t}</div><div class='r'>${e.approx?'약 ':''}${e.n}명</div><div class='r'>${e.s}</div>`)}"/>`; });
-    el.innerHTML=s+`</svg><p class="src">빗금 막대는 대략적인 인원이에요.</p>`; bindTips(el);
-    document.getElementById('recTable').innerHTML=`<table class="data-table"><thead><tr><th>회차</th><th class="num">참가자</th><th>대상</th></tr></thead><tbody>${ev.map(e=>`<tr><td>${e.t}</td><td class="num">${e.approx?'약 ':''}${e.n}</td><td>${e.s}</td></tr>`).join('')}</tbody></table>`; }
-
-  { const lv=n=>Math.min(4,n); let h=`<div class="mh" role="columnheader"></div><div class="mh" role="columnheader">매일 운영하는 업무</div><div class="mh" role="columnheader">직접 만들거나 고친 제도</div>`;
-    COVERAGE.forEach(([n,ops,pj])=>{ h+=`<div class="rh" role="rowheader">${n}</div><div class="cell c${lv(ops.length)}" role="cell">${ops.length?ops.map(o=>`<span class="it">${o}</span>`).join(''):'—'}</div><div class="cell c${lv(pj.length)}" role="cell">${pj.length?pj.map(([t,id])=>`<button class="it" data-id="${id}">${t}</button>`).join(''):'—'}</div>`; });
-    const el=document.getElementById('matrix'); el.innerHTML=h; el.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>go('all/'+b.dataset.id)); }
-}
-
-/* =========================================================
    Play Style
    ========================================================= */
 function renderStyle(){ document.getElementById('quests').innerHTML=DAILY.map((d,i)=>`<div class="quest"><span class="no">${String(i+1).padStart(2,'0')}</span><h4>${d.name}</h4><ul>${d.items.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join(''); }
@@ -1059,8 +890,8 @@ function renderStyle(){ document.getElementById('quests').innerHTML=DAILY.map((d
    탭 이동
    ========================================================= */
 /* 탭 = 직무분류(ALL + CATS). 주소: #all, #policy, #comp, #labor, #recruit, #ai
-   Profile·Career·Stats·Play Style은 위쪽 메뉴에서 여는 페이지: #profile, #career, #stats, #style */
-const PAGES={profile:['Profile','프로필'], career:['Career','커리어 여정'], stats:['Stats','숫자로 보기'], style:['Play Style','일하는 방식']};
+   Profile·Career·Play Style은 위쪽 메뉴에서 여는 페이지: #profile, #career, #style */
+const PAGES={profile:['Profile','프로필'], career:['Career','커리어 여정'], style:['Play Style','일하는 방식']};
 document.getElementById('tabs').innerHTML=[{id:'all',en:'ALL'},...CATS].map(c=>`<button class="tab" role="tab" id="t-${c.id}" aria-controls="all" data-tab="${c.id}">${esc(c.en)}</button>`).join('');
 const mbtn=document.getElementById('mbtn'), mnav=document.getElementById('mnav');
 mbtn.onclick=()=>{ const open=mnav.hidden; mnav.hidden=!open; mbtn.setAttribute('aria-expanded',open); };
@@ -1081,7 +912,6 @@ function route(){
   document.querySelectorAll('section.panel').forEach(s=>s.classList.toggle('on',s.id===(page||'all')));
   document.getElementById('boardView').hidden=isDetail; document.getElementById('detailView').hidden=!isDetail;
   if(isDetail) renderDetail(sub);
-  if(page==='stats') renderStats();
   document.querySelectorAll('.gnb a, .util a, .mnav a').forEach(a=>{ if(a.getAttribute('href')==='#'+(page||'all')) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
   mnav.hidden=true; mbtn.setAttribute('aria-expanded','false');
   hideTip();
@@ -1103,7 +933,6 @@ document.addEventListener('click',e=>{ const t=e.target.closest('[data-contact]'
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeContact(); else if(e.key==='Tab'&&!cpop.hidden){ e.preventDefault(); cpop.querySelector('.x').focus(); } });
 addEventListener('hashchange',route);
 addEventListener('scroll',hideTip,{passive:true});
-let rzT,lastW=innerWidth; addEventListener('resize',()=>{ clearTimeout(rzT); rzT=setTimeout(()=>{ if(Math.abs(innerWidth-lastW)>20){ lastW=innerWidth; if(document.getElementById('stats').classList.contains('on')) renderStats(); } },150); });
 
 const T=tenure(); document.getElementById('tenureHero').textContent=`${T.y}년 ${T.m}개월`; document.getElementById('tenureInline').textContent=`· ${T.y}년 ${T.m}개월째`;
 buildFilters(); renderRows(); renderProfile(); makeChips(document.getElementById('mapChips'),mapState,renderGantt); renderGantt(); renderStyle();
