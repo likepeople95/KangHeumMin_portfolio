@@ -41,6 +41,14 @@ header.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);bac
 .logo span{font-weight:400}
 .gnb{display:flex;gap:36px;font-weight:600;font-size:15px}
 .gnb a:hover,.util a:hover{opacity:.6}
+.gnb a[aria-current="page"],.util a[aria-current="page"]{text-decoration:underline;text-underline-offset:7px;text-decoration-thickness:2px}
+/* 휴대폰 메뉴: 머리글 메뉴가 숨겨지는 폭에서만 ≡ 버튼으로 연다 */
+.mbtn{display:none;width:36px;height:36px;place-items:center;margin-right:-6px;flex:none}
+.mnav{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);padding:4px 16px 12px;display:flex;flex-direction:column}
+.mnav a{padding:13px 0;font-weight:600;font-size:16px;border-bottom:1px solid var(--soft-2)}
+.mnav a:last-child{border-bottom:0}
+.mnav a[aria-current="page"]{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:2px}
+@media (min-width:761px){ .mnav{display:none!important} }
 .util{margin-left:auto;display:flex;gap:36px;font-weight:600;font-size:15px}
 
 /* ---------- 히어로 ---------- */
@@ -48,6 +56,10 @@ header.top{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.96);bac
 .hero h1{font-family:var(--en);font-weight:700;font-size:clamp(34px,4.6vw,52px);line-height:1.15;letter-spacing:-1.2px}
 .hero .who{margin-top:14px;color:var(--ink-2);font-size:16px}
 .hero .who b{color:var(--ink);font-weight:700}
+/* 메뉴 페이지(Profile·Career·Stats·Play Style) 머리 */
+.page-head{padding:104px 0 0}
+.page-head h1{font-family:var(--en);font-weight:700;font-size:clamp(34px,4.6vw,52px);line-height:1.15;letter-spacing:-1.2px}
+.page-head p{margin-top:14px;color:var(--ink-2);font-size:16px}
 .search{margin-top:40px;display:flex;align-items:center;gap:8px}
 .search label{flex:0 1 452px;display:flex;align-items:center;gap:12px;border-bottom:3px solid var(--ink);padding:8px 2px 10px}
 .search svg{flex:none}
@@ -161,7 +173,6 @@ section.panel.on{display:block}
 .events.ppl{margin-top:20px}
 .events.ppl .event{grid-template-columns:150px 1fr}
 .dsec ul.disc{list-style:disc;padding-left:20px;font-size:16px;line-height:26px;color:var(--d-body)}
-.d-count span{font-weight:400;color:var(--d-meta)}
 .note{margin-top:14px;font-size:14px;color:var(--d-meta)}
 .detail figure.ph figcaption{font-size:14px;color:var(--d-meta)}
 .btn{display:flex;justify-content:center;align-items:center;gap:6px;height:48px;border-radius:8px;font-weight:700;font-size:15px;border:1px solid var(--line);white-space:nowrap}
@@ -325,6 +336,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   .search input{font-size:15px}
   .util .opt{display:none}
   .hero{padding-top:56px}
+  .page-head{padding-top:56px}
+  .mbtn{display:grid}
   nav.tabs{margin-top:64px;gap:18px}
   .tab{font-size:17px}
   section.panel{padding-top:32px}
@@ -378,11 +391,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <a class="opt" href="#stats">숫자로 보기</a>
       <a href="mailto:rkdgmaals@naver.com">연락하기</a>
     </div>
+    <button class="mbtn" id="mbtn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mnav"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#111" stroke-width="2" stroke-linecap="round"/></svg></button>
   </div>
+  <nav class="mnav" id="mnav" aria-label="메뉴" hidden>
+    <a href="#all">프로젝트</a>
+    <a href="#career">커리어 여정</a>
+    <a href="#style">일하는 방식</a>
+    <a href="#profile">프로필</a>
+    <a href="#stats">숫자로 보기</a>
+  </nav>
 </header>
 
 <main class="wrap">
-  <section class="hero">
+  <section class="hero" id="hero">
     <h1>Meet Your Next PLAYER</h1>
     <p class="who"><b>강흠민</b> · 동아일보 경영지원국 인사팀 매니저 · HRM <span id="tenureHero"></span></p>
     <form class="search" id="searchForm" role="search">
@@ -394,13 +415,13 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     </form>
   </section>
 
-  <nav class="tabs" role="tablist" aria-label="포트폴리오 탭">
-    <button class="tab" role="tab" id="t-all" aria-controls="all" data-tab="all">ALL</button>
-    <button class="tab" role="tab" id="t-profile" aria-controls="profile" data-tab="profile">Profile</button>
-    <button class="tab" role="tab" id="t-career" aria-controls="career" data-tab="career">Career</button>
-    <button class="tab" role="tab" id="t-stats" aria-controls="stats" data-tab="stats">Stats</button>
-    <button class="tab" role="tab" id="t-style" aria-controls="style" data-tab="style">Play Style</button>
-  </nav>
+  <section class="page-head" id="pageHead" hidden>
+    <h1 id="pageTitle"></h1>
+    <p id="pageSub"></p>
+  </section>
+
+  <!-- 직무분류 탭: CATS의 en 이름으로 자동 생성 -->
+  <nav class="tabs" id="tabs" role="tablist" aria-label="직무분류"></nav>
 
   <!-- ===================== ALL ===================== -->
   <section class="panel" id="all" role="tabpanel" aria-labelledby="t-all">
@@ -411,7 +432,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
         </button>
         <div class="filters" id="filters">
           <h2>Filters <button type="button" id="clearF">Clear Filters</button></h2>
-          <div class="fgroup" id="fg-cat"></div>
           <div class="fgroup" id="fg-type"></div>
           <div class="fgroup" id="fg-year"></div>
         </div>
@@ -612,11 +632,11 @@ const ORG = '동아일보';
    데이터 — 여기 숫자·날짜만 고치면 목록과 차트가 같이 바뀝니다
    ========================================================= */
 const CATS = [
-  {id:'policy',  name:'제도 기획', hex:'#2a78d6'},
-  {id:'comp',    name:'보상·복지', hex:'#eb6834'},
-  {id:'labor',   name:'노무·근태', hex:'#1baf7a'},
-  {id:'recruit', name:'채용',      hex:'#eda100'},
-  {id:'ai',      name:'AI·학습',   hex:'#e87ba4'},
+  {id:'policy',  name:'제도 기획', en:'Policy', hex:'#2a78d6'},
+  {id:'comp',    name:'보상·복지', en:'C&B', hex:'#eb6834'},
+  {id:'labor',   name:'노무·근태', en:'Labor', hex:'#1baf7a'},
+  {id:'recruit', name:'채용', en:'Recruiting',      hex:'#eda100'},
+  {id:'ai',      name:'AI·학습', en:'AI',   hex:'#e87ba4'},
 ];
 const TYPES = [{id:'new',name:'새로 만들었다',short:'신설'},{id:'fix',name:'고쳤다',short:'개정·개편'},{id:'run',name:'운영했다',short:'운영'}];
 const JOIN_DATE = '2022-03-14';
@@ -792,11 +812,14 @@ function fgroup(el, key, title, items){
   el.querySelector('button').onclick=()=>{ const c=el.toggleAttribute('data-closed'); el.querySelector('button').setAttribute('aria-expanded',!c); };
   el.querySelectorAll('input').forEach(inp=>inp.onchange=()=>{ const v=key==='year'?+inp.value:inp.value; inp.checked?F[key].add(v):F[key].delete(v); renderRows(); });
 }
+/* 필터 옆 숫자는 지금 고른 탭(직무분류) 안에서 센다 */
+function refreshCounts(){ const base=PROJECTS.filter(p=>!F.cat.size||F.cat.has(p.cat));
+  document.querySelectorAll('#fg-type input').forEach(i=>{ i.closest('label').querySelector('.n').textContent=base.filter(p=>p.type===i.value).length; });
+  document.querySelectorAll('#fg-year input').forEach(i=>{ i.closest('label').querySelector('.n').textContent=base.filter(p=>p.years.includes(+i.value)).length; }); }
 function buildFilters(){
-  fgroup(document.getElementById('fg-cat'),'cat','영역',CATS.map(c=>({v:c.id,label:c.name,n:PROJECTS.filter(p=>p.cat===c.id).length})));
   fgroup(document.getElementById('fg-type'),'type','유형',TYPES.map(t=>({v:t.id,label:t.short,n:PROJECTS.filter(p=>p.type===t.id).length})));
   fgroup(document.getElementById('fg-year'),'year','진행 연도',[...YEARS].reverse().map(y=>({v:y,label:y+'년',n:PROJECTS.filter(p=>p.years.includes(y)).length})));
-  document.getElementById('clearF').onclick=()=>{ F.cat.clear();F.type.clear();F.year.clear(); document.querySelectorAll('.filters input').forEach(i=>i.checked=false); renderRows(); };
+  document.getElementById('clearF').onclick=()=>{ F.type.clear();F.year.clear(); document.querySelectorAll('.filters input').forEach(i=>i.checked=false); renderRows(); };
   const ft=document.getElementById('ftoggle'), fl=document.getElementById('filters');
   ft.onclick=()=>{ const o=fl.classList.toggle('open'); ft.setAttribute('aria-expanded',o); };
 }
@@ -813,7 +836,8 @@ function routineMatch(){ const q=F.q.trim().toLowerCase(), words=q?q.split(/\s+/
   return {show:true, rel:F.cat.size?items:[]}; }
 function renderRows(){
   const list=filtered(), rm=routineMatch(), R=ROUTINE;
-  document.getElementById('countLine').textContent=`${list.length}개의 프로젝트가 있습니다.`;
+  // 일상업무 줄도 목록에 보이면 1건으로 센다
+  document.getElementById('countLine').textContent=`${list.length+(rm.show?1:0)}개의 프로젝트가 있습니다.`;
   document.getElementById('queryLine').innerHTML = F.q ? `‘${esc(F.q)}’ 검색 결과<button type="button" id="clearQ">검색 지우기</button>` : '';
   const cq=document.getElementById('clearQ'); if(cq) cq.onclick=()=>{ F.q=''; document.getElementById('q').value=''; renderRows(); };
   const routineRow = !rm.show ? '' : `
@@ -864,14 +888,14 @@ function renderDetail(id){
   el.innerHTML=`
    <div class="detail">
     <aside class="d-side">
-      <a class="back" href="#all">${ICON_BACK}돌아가기</a>
+      <a class="back" href="#${lastList}">${ICON_BACK}돌아가기</a>
       <div class="d-stick">
-        <div class="d-count">프로젝트 총 ${PROJECTS.length}건 <span>+ 상시 1건</span></div>
+        <div class="d-count">프로젝트 총 ${PROJECTS.length+1}건</div>
         <nav class="d-cards" aria-label="전체 프로젝트">${cards}</nav>
       </div>
     </aside>
     <article>
-      <a class="back back-m" href="#all">${ICON_BACK}돌아가기</a>
+      <a class="back back-m" href="#${lastList}">${ICON_BACK}돌아가기</a>
       <div class="d-head">
         <div>
           <h2>[${ORG}] ${esc(v.title)}</h2>
@@ -884,7 +908,7 @@ function renderDetail(id){
       </div>
       ${photoSlot((p&&p.banner)||'banner-'+id, v.short+' 대표 사진', 'd-banner')}
       ${v.body}
-      <a class="d-bottom" href="#all">${ICON_BACK}전체 프로젝트로 가기</a>
+      <a class="d-bottom" href="#${lastList}">${ICON_BACK}전체 프로젝트로 가기</a>
     </article>
    </div>`;
   el.querySelectorAll('[data-share]').forEach(b=>b.onclick=()=>copyLink(b.dataset.share));
@@ -1048,19 +1072,35 @@ function renderStyle(){ document.getElementById('quests').innerHTML=DAILY.map((d
 /* =========================================================
    탭 이동
    ========================================================= */
-const TABS=['all','profile','career','stats','style'];
+/* 탭 = 직무분류(ALL + CATS). 주소: #all, #policy, #comp, #labor, #recruit, #ai
+   Profile·Career·Stats·Play Style은 위쪽 메뉴에서 여는 페이지: #profile, #career, #stats, #style */
+const PAGES={profile:['Profile','프로필'], career:['Career','커리어 여정'], stats:['Stats','숫자로 보기'], style:['Play Style','일하는 방식']};
+document.getElementById('tabs').innerHTML=[{id:'all',en:'ALL'},...CATS].map(c=>`<button class="tab" role="tab" id="t-${c.id}" aria-controls="all" data-tab="${c.id}">${esc(c.en)}</button>`).join('');
+const mbtn=document.getElementById('mbtn'), mnav=document.getElementById('mnav');
+mbtn.onclick=()=>{ const open=mnav.hidden; mnav.hidden=!open; mbtn.setAttribute('aria-expanded',open); };
 function go(h){ if(location.hash!=='#'+h) location.hash=h; else route(); }
-let first=true;
+let first=true, lastList='all';
 function route(){
-  const [tab,sub]=(location.hash.slice(1)||'all').split('/'); const t=TABS.includes(tab)?tab:'all';
-  document.querySelectorAll('.tab').forEach(b=>{ const on=b.dataset.tab===t; b.setAttribute('aria-selected',on); b.tabIndex=on?0:-1; });
-  document.querySelectorAll('section.panel').forEach(s=>s.classList.toggle('on',s.id===t));
-  const isDetail = t==='all' && sub && (sub===ROUTINE.id || PROJECTS.some(p=>p.id===sub));
+  const [head,sub]=(location.hash.slice(1)||'all').split('/');
+  const page = PAGES[head] ? head : null;
+  const cat = CATS.some(c=>c.id===head) ? head : null;
+  const isDetail = !page && head==='all' && !!sub && (sub===ROUTINE.id || PROJECTS.some(p=>p.id===sub));
+  if(!page && !isDetail){ lastList = cat||'all';
+    if(F.cat.size!==(cat?1:0) || (cat && !F.cat.has(cat))){ F.cat=new Set(cat?[cat]:[]); refreshCounts(); renderRows(); } }
+  const sel = isDetail ? lastList : (cat||'all');
+  document.querySelectorAll('.tab').forEach(b=>{ const on=b.dataset.tab===sel; b.setAttribute('aria-selected',on); b.tabIndex=on?0:-1; });
+  document.getElementById('hero').hidden=!!page; document.getElementById('tabs').hidden=!!page;
+  document.getElementById('pageHead').hidden=!page;
+  if(page){ document.getElementById('pageTitle').textContent=PAGES[page][0]; document.getElementById('pageSub').textContent=PAGES[page][1]; }
+  document.querySelectorAll('section.panel').forEach(s=>s.classList.toggle('on',s.id===(page||'all')));
   document.getElementById('boardView').hidden=isDetail; document.getElementById('detailView').hidden=!isDetail;
   if(isDetail) renderDetail(sub);
-  if(t==='stats') renderStats();
+  if(page==='stats') renderStats();
+  document.querySelectorAll('.gnb a, .util a, .mnav a').forEach(a=>{ if(a.getAttribute('href')==='#'+(page||'all')) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+  mnav.hidden=true; mbtn.setAttribute('aria-expanded','false');
   hideTip();
-  if(!first){ const tabs=document.querySelector('nav.tabs'); window.scrollTo({top:tabs.getBoundingClientRect().top+scrollY-80, behavior:'instant'}); }
+  if(!first){ if(page) window.scrollTo({top:0, behavior:'instant'});
+    else { const tabs=document.getElementById('tabs'); window.scrollTo({top:tabs.getBoundingClientRect().top+scrollY-80, behavior:'instant'}); } }
   first=false;
 }
 document.querySelectorAll('.tab').forEach((b,i,all)=>{ b.onclick=()=>go(b.dataset.tab);
