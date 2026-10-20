@@ -150,6 +150,9 @@ section.panel.on{display:block}
 /* 사진이 들어오면 자르지 않고 사진 비율 그대로 보여준다 */
 .d-banner .ph-frame.has-img{aspect-ratio:auto}
 .d-banner .ph-frame.has-img img{height:auto;display:block}
+/* 세로로 긴 사진은 높이를 제한하고 가운데 정렬 (자르지 않음) */
+.d-banner .ph-frame.tall{background:transparent;border-radius:0}
+.d-banner .ph-frame.tall img{width:auto;max-width:100%;max-height:640px;margin:0 auto;border-radius:14px}
 .d-banner figcaption{display:none}
 .dsec{margin-top:50px}
 .d-banner + .dsec{margin-top:60px}
@@ -798,7 +801,7 @@ function copyLink(id){ const url=location.href.split('#')[0]+'#all/'+id;
 function photoSlot(file,label,extra=''){ return `<figure class="ph ${extra}" data-file="${file}"><div class="ph-frame"><div class="ph-empty"><span>사진 자리</span><b>${esc(label)}</b><code>${PHOTO_DIR}${file}.jpg</code></div></div><figcaption>${esc(label)}</figcaption></figure>`; }
 function loadPhotos(root){ root.querySelectorAll('figure.ph:not([data-done])').forEach(fig=>{ fig.dataset.done='1'; const exts=['jpg','jpeg','png','webp','JPG','PNG']; let i=0;
   const next=()=>{ if(i>=exts.length){ if(!SHOW_EMPTY_PHOTO_SLOTS) fig.classList.add('hidden'); return; }
-    const img=new Image(); img.onload=()=>{ img.alt=fig.querySelector('figcaption').textContent; const fr=fig.querySelector('.ph-frame'); fr.innerHTML=''; fr.classList.add('has-img'); fr.appendChild(img); }; img.onerror=next; img.src=`${PHOTO_DIR}${fig.dataset.file}.${exts[i++]}`; };
+    const img=new Image(); img.onload=()=>{ img.alt=fig.querySelector('figcaption').textContent; const fr=fig.querySelector('.ph-frame'); fr.innerHTML=''; fr.classList.add('has-img'); if(img.naturalHeight>img.naturalWidth) fr.classList.add('tall'); fr.appendChild(img); }; img.onerror=next; img.src=`${PHOTO_DIR}${fig.dataset.file}.${exts[i++]}`; };
   next(); }); }
 
 /* =========================================================
